@@ -1,0 +1,12 @@
+// Fork of https://github.com/Arwalk/zig-protobuf, adjusted to use with NAP
+.{
+    .name = .protobuf_nap,
+    .version = "2.0.0",
+    .minimum_zig_version = "0.14.1",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "bootstrapped-generator",
+        "src",
+    },
+}

@@ -1,0 +1,16 @@
+{
+    "id": 15001106,
+    "events": {
+        "OnInteract": {
+            "id": 100,
+            "actions": [
+                {
+                    "$type": "Share.CActionOpenUI",
+                    "id": 101,
+                    "ui": "UIMainCityTelescopePageController",
+                    "store_template_id": 2010
+                }
+            ]
+        }
+    }
+}

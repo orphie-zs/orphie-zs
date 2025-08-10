@@ -1,0 +1,8 @@
+zig-out/
+.zig-cache/
+/protocol/*.proto
+
+# Configuration files
+dispatch_config.zon
+gameserver_config.zon
+gameplay_settings.zon

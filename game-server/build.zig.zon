@@ -1,0 +1,15 @@
+.{
+    .name = .orphie_game_server,
+    .version = "0.0.1",
+    .minimum_zig_version = "0.14.1",
+    .fingerprint = 0xa791d237f9018966,
+    .paths = .{ "src", "build.zig", "build.zig.zon" },
+    .dependencies = .{
+        .common = .{ .path = "../common" },
+        .protocol = .{ .path = "../protocol" },
+        .network = .{
+            .url = "git+https://github.com/ikskuh/zig-network?ref=master#8f6a156a547da4b20030effa40ecba8f63b467a1",
+            .hash = "network-0.1.0-Pm-AghMmAQBfWhIrEM1V3X8VsqiCbCh0CrqNdPVwQ3LG",
+        },
+    },
+}

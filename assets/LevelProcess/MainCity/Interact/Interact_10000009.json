@@ -1,0 +1,16 @@
+{
+    "id": 10000009,
+    "events": {
+        "OnInteract": {
+            "id": 100,
+            "actions": [
+                {
+                    "$type": "Share.CActionOpenUI",
+                    "id": 101,
+                    "ui": "UIYorozuyaPage",
+                    "store_template_id": 1161
+                }
+            ]
+        }
+    }
+}

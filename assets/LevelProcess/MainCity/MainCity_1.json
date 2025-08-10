@@ -1,0 +1,343 @@
+{
+    "id": 1,
+    "default_section_id": 2,
+    "sections": {
+        "1": {
+            "unity_scene_path": "MainCity_Street",
+            "born_transform": "Street_PlayerPos_Default",
+            "section_progress": {
+                "id": 100,
+                "on_add": [
+                    "Sec1_DefaultTrigger",
+                    "Sec1_DefaultTrigger2"
+                ],
+                "on_enter": [],
+                "events": {
+                    "Sec1_DefaultTrigger": {
+                        "id": 100,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 101,
+                                "tag_id": 1
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 102,
+                                "tag_id": 2
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 103,
+                                "tag_id": 7
+                            }                            
+                        ]
+                    },
+                    "Sec1_DefaultTrigger2": {
+                        "id": 200,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 201,
+                                "tag_id": 1003
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 202,
+                                "tag_id": 2016
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 203,
+                                "tag_id": 2017
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 204,
+                                "tag_id": 2018
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "2": {
+            "unity_scene_path": "MainCity_Workshop",
+            "born_transform": "Workshop_PlayerPos_Default",
+            "section_progress": {
+                "id": 200,
+                "on_add": [
+                    "Sec2_DefaultTrigger",
+                    "Sec2_DefaultTrigger2"
+                ],
+                "on_enter": [
+                    "Sec2_EnterTrigger1"
+                ],
+                "events": {
+                    "Sec2_DefaultTrigger": {
+                        "id": 100,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 103,
+                                "tag_id": 3
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 104,
+                                "tag_id": 4
+                            }
+                        ]
+                    },
+                    "Sec2_DefaultTrigger2": {
+                        "id": 200,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 201,
+                                "tag_id": 1002
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 203,
+                                "tag_id": 1004
+                            },
+                           {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 204,
+                                "tag_id": 1005
+                           },
+                           {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 205,
+                                "tag_id": 2028
+                           },
+                           {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 206,
+                                "tag_id": 520001
+                           }
+                        ]
+                    },
+                    "Sec2_EnterTrigger1": {
+                        "id": 300,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionSetMainCityObjectState",
+                                "id": 301,
+                                "object_state": {
+                                    "999": 10007,
+                                    "1000": 10001,
+                                    "1001": 10003,
+                                    "1003": 10013,
+                                    "1004": 10014,
+                                    "1005": 10027,
+                                    "1006": 10015,
+                                    "1007": 10016,
+                                    "1008": 10017,
+                                    "1009": 10018,
+                                    "1010": 10019,
+                                    "1011": 10020,
+                                    "1012": 10021,
+                                    "1013": 10022,
+                                    "1014": 10023,
+                                    "1015": 10024,
+                                    "1016": 10025,
+                                    "1017": 10026,
+                                    "1018": 10028,
+                                    "1019": 10029,
+                                    "1020": 10030,
+                                    "1021": 10031,
+                                    "1022": 10032,
+                                    "1023": 10033,
+                                    "1024": 10034,
+                                    "1025": 10035,
+                                    "1026": 10036,
+                                    "1027": 10037,
+                                    "1028": 10038,
+                                    "1029": 10039,
+                                    "1101": 11001,
+                                    "1201": 12001,
+                                    "1301": 13001,
+                                    "1302": 13002,
+                                    "1303": 13003,
+                                    "1304": 13004,
+                                    "1305": 13005,
+                                    "1401": 14023,
+                                    "2001": 20001,
+                                    "2002": 20021,
+                                    "2003": 20031,
+                                    "2004": 20041,
+                                    "2005": 20051,
+                                    "2007": 20071,
+                                    "2201": 22012,
+                                    "2202": 22021,
+                                    "2203": 22032,
+                                    "2211": 22114,
+                                    "2212": 22121,
+                                    "2213": 22131,
+                                    "3002": 300201,
+                                    "3003": 300301,
+                                    "3101": 310101,
+                                    "3503": 350301,
+                                    "3504": 350401
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "3": {
+            "unity_scene_path": "MainCity_Street",
+            "born_transform": "Garage_PlayerPos_Default",
+            "section_progress": {
+                "id": 300,
+                "on_add": [
+                    "Sec3_DefaultTrigger"
+                ],
+                "on_enter": [],
+                "events": {
+                    "Sec3_DefaultTrigger": {
+                        "id": 100,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 101,
+                                "tag_id": 5
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 102,
+                                "tag_id": 6
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 103,
+                                "tag_id": 8
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 104,
+                                "tag_ids": [
+                                    5016,
+                                    5017,
+                                    5018,
+                                    5019,
+                                    5020
+                                ]
+                            }                         
+                        ]
+                    }
+                }
+            }
+        },
+        "151": {
+            "unity_scene_path": "Maincity_Zero",
+            "born_transform": "Zero_PlayerPos_Default",
+            "section_progress": {
+                "id": 15100,
+                "on_add": [
+                    "Sec151_DefaultTrigger",
+                    "Sec151_DefaultTrigger2"
+                ],
+                "on_enter": [
+                    "Sec151_EnterTrigger1"
+                ],
+                "events": {
+                    "Sec151_DefaultTrigger": {
+                        "id": 100,
+                        "actions": []
+                    },
+                    "Sec151_DefaultTrigger2": {
+                        "id": 200,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 202,
+                                "tag_id": 102102
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 203,
+                                "tag_id": 102302
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 204,
+                                "tag_id": 102201
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 205,
+                                "tag_id": 102801
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 206,
+                                "tag_id": 41500001
+                            }
+                        ]
+                    },
+                    "Sec151_EnterTrigger1": {
+                        "id": 300,
+                        "actions": [
+                            {
+                                "$type": "Share.CActionChangeInteractCfg",
+                                "id": 302,
+                                "interact_id": 15001109,
+                                "tag_ids": [
+                                    102102
+                                ],
+                                "participators": {
+                                    "102102": "A"
+                                },
+                                "interact_shape": "Sphere",
+                                "interact_scale": {
+                                    "x": 2.0,
+                                    "y": 0.0,
+                                    "z": 0.0
+                                }
+                            },
+                            {
+                                "$type": "Share.CActionChangeInteractCfg",
+                                "id": 303,
+                                "interact_id": 15001108,
+                                "tag_ids": [
+                                    102302
+                                ],
+                                "participators": {
+                                    "102302": "A"
+                                },
+                                "interact_shape": "Sphere",
+                                "interact_scale": {
+                                    "x": 2.0,
+                                    "y": 0.0,
+                                    "z": 0.0
+                                }
+                            },
+                            {
+                                "$type": "Share.CActionChangeInteractCfg",
+                                "id": 304,
+                                "interact_id": 15001103,
+                                "tag_ids": [
+                                    102201
+                                ],
+                                "participators": {
+                                    "102201": "A"
+                                },
+                                "interact_shape": "Sphere",
+                                "interact_scale": {
+                                    "x": 2.0,
+                                    "y": 0.0,
+                                    "z": 0.0
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
+

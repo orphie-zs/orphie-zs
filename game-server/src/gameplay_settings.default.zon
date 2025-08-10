@@ -1,0 +1,53 @@
+.{
+    // HadalZone (Shiyu Defense) and HadalZoneV2 (Deadly Assault) schedule configuration.
+    // Entrance IDs 2 and 3 are meant for Stable and Disputed nodes (the ones with static set of levels)
+    // See ZoneInfoTemplateTb for more Zone IDs.
+    .hadal_entrance_list = .{
+        .{ .entrance_id = 2, .zone_id = 61001 }, // Stable Node
+        .{ .entrance_id = 3, .zone_id = 61002 }, // Disputed Node
+        .{ .entrance_id = 1, .zone_id = 62027 }, // Critical Node
+        .{ .entrance_id = 9, .zone_id = 69017 }, // Deadly Assault
+    },
+
+    // Overrides avatar parameters. By default they're maxed out.
+    .avatar_overrides = .{
+        // Example of avatar override configuration to set Orphie's Mindscape to 1.
+        // .{
+        //     .id = 1301, // Orphie's ID. See AvatarBaseTemplateTb for more.
+        //     .level = 60,
+        //     .unlocked_talent_num = 1, // Mindscape. By default it's set to 6.
+        // },
+    },
+
+    // Adds weapons (W-Engines) with specified parameters.
+    .weapons = .{
+        // Example of weapon configuration.
+        // .{
+        //     .id = 14130, // Orphie's Signature W-Engine ID. See WeaponTemplateTb for more.
+        //     .level = 60,
+        //     .star = 5,
+        //     .refine_level = 1, // Overclock
+        // },
+    },
+
+    // Adds equipment (Drive Discs) with specified parameters.
+    .equipment = .{
+        // Example of Drive Disc configuration.
+        // .{
+        //     .id = 31041, // ID of Woodpecker Electro [1]. See EquipmentTemplateTb for more.
+        //     .level = 15,
+        //     .star = 1,
+        //     .properties = .{
+        //         // Only 1 main property is allowed.
+        //         // SYNTAX: .{ property_type, base_value, add_value },
+        //         .{ 11103, 550, 0 },
+        //     },
+        //     .sub_properties = .{
+        //         // Up to 4 sub-properties is allowed.
+        //         // SYNTAX: .{ property_type, base_value, add_value },
+        //         .{ 12103, 19, 2 },
+        //         .{ 13102, 480, 1 },
+        //     },
+        // },
+    },
+}

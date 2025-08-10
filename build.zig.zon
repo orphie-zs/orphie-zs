@@ -1,0 +1,14 @@
+.{
+    .name = .orphie_zs,
+    .version = "0.0.1",
+    .minimum_zig_version = "0.14.1",
+    .fingerprint = 0x608f5b504eedcd32,
+    .dependencies = .{
+        .common = .{ .path = "common" },
+        .protobuf_nap = .{ .path = "protocol/protobuf-nap" },
+        .protocol = .{ .path = "protocol" },
+        .orphie_dispatch_server = .{ .path = "dispatch-server" },
+        .orphie_game_server = .{ .path = "game-server" },
+    },
+    .paths = .{""},
+}

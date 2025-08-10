@@ -1,0 +1,18 @@
+{
+    "id": 10000001,
+    "events": {
+        "OnInteract": {
+            "id": 100,
+            "actions": [
+                {
+                    "$type": "Share.CActionSwitchSection",
+                    "id": 101,
+                    "section_id": 2,
+                    "transform_id": "Workshop_PlayerPos_FromStreet",
+                    "camera_y": 0,
+                    "camera_x": 6000
+                }
+            ]
+        }
+    }
+}

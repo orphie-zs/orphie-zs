@@ -1,0 +1,9 @@
+.{
+    .name = .protocol,
+    .version = "0.0.1",
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{
+        .protobuf_nap = .{ .path = "protobuf-nap" },
+    },
+    .paths = .{ "src", "build.zig", "build.zig.zon" },
+}
