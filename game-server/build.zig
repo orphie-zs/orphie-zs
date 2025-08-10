@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn build(b: *std.Build) void {
+pub fn build(b: *std.Build) !void {
     const options = .{
         .target = b.standardTargetOptions(.{}),
         .optimize = b.standardOptimizeOption(.{}),
@@ -20,14 +20,15 @@ pub fn build(b: *std.Build) void {
     });
 
     const filecfg_dir = std.fs.cwd().openDir("assets/Filecfg/", .{ .iterate = true }) catch @panic("assets/Filecfg directory doesn't exist");
-    var filecfg_iter = filecfg_dir.iterate();
+    var walker = try filecfg_dir.walk(b.allocator);
+    defer walker.deinit();
 
-    while (filecfg_iter.index <= filecfg_iter.end_index) {
-        const entry = filecfg_iter.next() catch break orelse break;
+    while (true) {
+        const entry = walker.next() catch break orelse break;
         if (entry.kind == .file) {
-            const path = std.mem.concat(b.allocator, u8, &.{ "../assets/Filecfg/", entry.name }) catch @panic("Out of Memory");
+            const path = std.mem.concat(b.allocator, u8, &.{ "../assets/Filecfg/", entry.path }) catch @panic("Out of Memory");
 
-            exe.root_module.addAnonymousImport(entry.name, .{
+            exe.root_module.addAnonymousImport(entry.path, .{
                 .root_source_file = b.path(path),
             });
         }

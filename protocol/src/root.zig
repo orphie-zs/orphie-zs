@@ -3,7 +3,6 @@
 const pb = @import("nap.pb.zig");
 pub const head = @import("head.pb.zig");
 pub const action = @import("nap_action.pb.zig");
-pub const CmdIds = CmdIdEnum(pb);
 pub const CmdNames = cmdNames(pb);
 
 pub const protobuf = @import("protobuf");
@@ -137,48 +136,6 @@ pub inline fn setFields(proto: anytype, to_set: anytype) void {
             }
         }
     }
-}
-
-fn countCmdIds(comptime T: type) comptime_int {
-    const decls = std.meta.declarations(T);
-    var count = 0;
-
-    inline for (decls) |decl| {
-        const inner_struct = @field(T, decl.name);
-        if (@hasDecl(inner_struct, "CmdId") and @field(inner_struct, "CmdId") != 0) {
-            count += 1;
-        }
-    }
-
-    return count;
-}
-
-fn CmdIdEnum(comptime T: type) type {
-    @setEvalBranchQuota(1_000_000);
-
-    const enum_count = countCmdIds(T);
-    comptime var fields: [enum_count]std.builtin.Type.EnumField = undefined;
-    comptime var i = 0;
-
-    const decls = std.meta.declarations(T);
-
-    inline for (decls) |decl| {
-        const inner_struct = @field(T, decl.name);
-        if (@hasDecl(inner_struct, "CmdId") and @field(inner_struct, "CmdId") != 0) {
-            fields[i] = .{
-                .name = @typeName(inner_struct),
-                .value = @field(inner_struct, "CmdId"),
-            };
-            i += 1;
-        }
-    }
-
-    return @Type(.{ .@"enum" = .{
-        .decls = &.{},
-        .tag_type = u16,
-        .fields = &fields,
-        .is_exhaustive = true,
-    } });
 }
 
 fn cmdNames(comptime T: type) [10_000]?[]const u8 {

@@ -4,6 +4,7 @@ const max_comptime_rows = 25;
 
 pub fn TsvTable(comptime template_name: []const u8) type {
     @setEvalBranchQuota(1_000_000);
+
     const data: []const u8 = @embedFile(template_name);
 
     const header_len = std.mem.indexOfScalar(u8, data, '\n') orelse @compileError("no newline at the end of header in file " ++ template_name);

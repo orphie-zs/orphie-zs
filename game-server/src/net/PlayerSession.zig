@@ -149,9 +149,39 @@ fn processMessage(self: *Self, packet: NetPacket) !void {
     }
 }
 
+inline fn EnumerateCmdIds(comptime T: type) type {
+    comptime var fields: []const std.builtin.Type.EnumField = &.{};
+    inline for (comptime std.meta.declarations(T)) |decl| {
+        const imported_handler = @field(T, decl.name);
+        inline for (comptime std.meta.declarations(imported_handler)) |handler_decl| {
+            switch (@typeInfo(@TypeOf(@field(imported_handler, handler_decl.name)))) {
+                .@"fn" => |fn_info| {
+                    const Message = fn_info.params[1].type.?;
+
+                    if (@hasDecl(Message, "CmdId")) {
+                        fields = fields ++ .{std.builtin.Type.EnumField{
+                            .name = @typeName(Message),
+                            .value = @field(Message, "CmdId"),
+                        }};
+                    }
+                },
+                else => {},
+            }
+        }
+    }
+
+    return @Type(.{ .@"enum" = .{
+        .decls = &.{},
+        .tag_type = u16,
+        .fields = fields,
+        .is_exhaustive = true,
+    } });
+}
+
 inline fn handleMessage(context: *NetContext, comptime T: type, packet: *const NetPacket) !bool {
     @setEvalBranchQuota(1_000_000);
-    const cmd_id_tag = std.meta.intToEnum(protocol.CmdIds, packet.cmd_id) catch return false;
+    const CmdIds = EnumerateCmdIds(T);
+    const cmd_id_tag = std.meta.intToEnum(CmdIds, packet.cmd_id) catch return false;
 
     switch (cmd_id_tag) {
         inline else => |cmd_id| {
@@ -163,7 +193,7 @@ inline fn handleMessage(context: *NetContext, comptime T: type, packet: *const N
                             const Message = fn_info.params[1].type.?;
 
                             if (@hasDecl(Message, "CmdId")) {
-                                const t_enum_value: protocol.CmdIds = @enumFromInt(@field(Message, "CmdId"));
+                                const t_enum_value: CmdIds = @enumFromInt(@field(Message, "CmdId"));
                                 if (cmd_id == t_enum_value) {
                                     const req = try @field(Message, "decode")(packet.body, context.arena);
                                     defer req.deinit();

@@ -42,11 +42,13 @@ fn loadAllNpcGraphs(map: *EventGraphTemplateMap, gpa: Allocator) !void {
     var graph_dir = std.fs.cwd().openDir(npc_graph_dir, .{ .iterate = true }) catch return error.FailedToOpenNpcGraphDir;
     defer graph_dir.close();
 
-    var graph_iter = graph_dir.iterate();
-    while (graph_iter.index <= graph_iter.end_index) {
-        const entry = graph_iter.next() catch break orelse break;
+    var walker = try graph_dir.walk(gpa);
+    defer walker.deinit();
+
+    while (true) {
+        const entry = walker.next() catch break orelse break;
         if (entry.kind == .file) {
-            const content = try graph_dir.readFileAllocOptions(gpa, entry.name, 1024 * 1024, null, @alignOf(u8), 0);
+            const content = try graph_dir.readFileAllocOptions(gpa, entry.path, 1024 * 1024, null, @alignOf(u8), 0);
             defer gpa.free(content);
 
             const parsed = try std.json.parseFromSlice(std.json.Value, gpa, content, .{});
