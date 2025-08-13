@@ -26,6 +26,11 @@ pub const ZoneInfoTemplate = TsvTable("ZoneInfoTemplateTb.tsv");
 pub const LayerInfoTemplate = TsvTable("LayerInfoTemplateTb.tsv");
 pub const HadalZoneQuestTemplate = TsvTable("HadalZoneQuestTemplateTb.tsv");
 
+pub const AvatarTemplateConfiguration = struct {
+    base_template: *const AvatarBaseTemplate,
+    battle_template: *const AvatarBattleTemplate,
+};
+
 pub const TemplateCollection = struct {
     const max_file_size = 8192 * 1024;
     const Self = @This();
@@ -75,6 +80,15 @@ pub const TemplateCollection = struct {
         const index = key_map.get(key) orelse return null;
 
         return &template_tb.items[index];
+    }
+
+    pub fn getAvatarTemplateConfig(self: *const Self, avatar_id: u32) ?AvatarTemplateConfiguration {
+        const id: i32 = @intCast(avatar_id);
+
+        return .{
+            .base_template = self.getConfigByKey(.avatar_base_template_tb, id) orelse return null,
+            .battle_template = self.getConfigByKey(.avatar_battle_template_tb, id) orelse return null,
+        };
     }
 
     pub fn getAvatarLevelAdvanceTemplate(self: *const Self, avatar_id: u32, advance_id: u32) ?AvatarLevelAdvanceTemplate {

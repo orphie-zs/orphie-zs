@@ -2,7 +2,7 @@ const std = @import("std");
 const property = @import("../property.zig");
 const protocol = @import("protocol");
 
-const AvatarBaseTemplate = @import("../../data/templates.zig").AvatarBaseTemplate;
+const AvatarTemplateConfiguration = @import("../../data/templates.zig").AvatarTemplateConfiguration;
 const Allocator = std.mem.Allocator;
 const ByName = protocol.ByName;
 
@@ -52,8 +52,10 @@ avatar_skin_id: u32,
 skill_type_level: [AvatarSkillType.count]u32,
 dressed_equip: [equipment_num]?u32,
 show_weapon_type: ShowWeaponType,
+is_awake_available: bool,
+awake_id: u32,
 
-pub fn init(template: *const AvatarBaseTemplate) @This() {
+pub fn init(config: AvatarTemplateConfiguration) @This() {
     var skill_type_level: [AvatarSkillType.count]u32 = undefined;
     for (0..AvatarSkillType.count) |i| {
         const skill_type: AvatarSkillType = @enumFromInt(i);
@@ -61,7 +63,7 @@ pub fn init(template: *const AvatarBaseTemplate) @This() {
     }
 
     return .{
-        .id = @intCast(template.id),
+        .id = @intCast(config.base_template.id),
         .level = 60,
         .exp = 0,
         .rank = 6,
@@ -74,6 +76,8 @@ pub fn init(template: *const AvatarBaseTemplate) @This() {
         .skill_type_level = skill_type_level,
         .dressed_equip = [_]?u32{null} ** equipment_num,
         .show_weapon_type = .active,
+        .is_awake_available = config.battle_template.awake_ids.len != 0,
+        .awake_id = 0,
     };
 }
 
@@ -89,6 +93,8 @@ pub fn toProto(self: *const @This(), allocator: Allocator) !ByName(.AvatarInfo) 
         .is_favorite = self.is_favorite,
         .avatar_skin_id = self.avatar_skin_id,
         .show_weapon_type = @intFromEnum(self.show_weapon_type),
+        .is_awake_available = self.is_awake_available,
+        .awake_id = self.awake_id,
     }, allocator);
 
     for (self.skill_type_level, 0..self.skill_type_level.len) |level, skill_type| {

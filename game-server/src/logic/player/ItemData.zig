@@ -8,7 +8,7 @@ const PropertyHashMap = property.PropertyHashMap;
 const Allocator = std.mem.Allocator;
 const ByName = protocol.ByName;
 
-const AvatarBaseTemplate = templates.AvatarBaseTemplate;
+const AvatarTemplateConfiguration = templates.AvatarTemplateConfiguration;
 const WeaponTemplate = templates.WeaponTemplate;
 
 const Self = @This();
@@ -73,17 +73,15 @@ pub fn addCurrency(self: *Self, id: u32, amount: u32) !void {
     } });
 }
 
-pub fn unlockAvatar(self: *Self, template: *const AvatarBaseTemplate) !void {
-    if (template.camp == 0) return error.AvatarIsNotUnlockable;
+pub fn unlockAvatar(self: *Self, config: AvatarTemplateConfiguration) !void {
+    if (config.base_template.camp == 0) return error.AvatarIsNotUnlockable;
 
-    const id: u32 = @intCast(template.id);
+    const id: u32 = @intCast(config.base_template.id);
     if (self.item_map.contains(id)) {
         return error.AvatarAlreadyUnlocked;
     }
 
-    try self.item_map.put(id, .{
-        .avatar = Avatar.init(template),
-    });
+    try self.item_map.put(id, .{ .avatar = Avatar.init(config) });
 }
 
 pub fn unlockSkin(self: *Self, id: u32) !void {

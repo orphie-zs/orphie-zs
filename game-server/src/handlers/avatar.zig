@@ -225,3 +225,29 @@ pub fn onAvatarSkinUnDressCsReq(context: *NetContext, req: protocol.ByName(.Avat
         }, context.arena);
     }
 }
+
+pub fn onAvatarSetAwakeCsReq(context: *NetContext, req: protocol.ByName(.AvatarSetAwakeCsReq)) !protocol.ByName(.AvatarSetAwakeScRsp) {
+    const retcode: i32 = blk: {
+        const avatar_id = protocol.getField(req, .avatar_id, u32) orelse break :blk 1;
+
+        const player = &context.session.player_info.?;
+        const avatar = player.item_data.getItemPtrAs(Avatar, avatar_id) orelse {
+            std.log.debug("AvatarSetAwakeCsReq: avatar {} is not unlocked", .{avatar_id});
+            break :blk 1;
+        };
+
+        if (avatar.awake_id != 0) {
+            avatar.awake_id = 0;
+        } else if (context.session.globals.templates.getAvatarTemplateConfig(avatar_id)) |config| {
+            if (config.battle_template.awake_ids.len != 0) {
+                avatar.awake_id = @intCast(config.battle_template.awake_ids[0]);
+            }
+        }
+
+        break :blk 0;
+    };
+
+    return protocol.makeProto(.AvatarSetAwakeScRsp, .{
+        .retcode = retcode,
+    }, context.arena);
+}

@@ -64952,7 +64952,7 @@ pub const PDGMODJMBHI = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const ONFDDGDPGAC = struct {
+pub const AvatarSetAwakeCsReq = struct {
     pub const CmdId = 3148;
     awake_id: u32 = 0,
     avatar_id: u32 = 0,

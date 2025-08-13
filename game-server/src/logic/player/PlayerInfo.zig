@@ -61,7 +61,9 @@ pub fn init(uid: u32, allocator: Allocator) !Self {
 
 pub fn unlockAll(self: *Self, templates: *const TemplateCollection) !void {
     for (templates.avatar_base_template_tb.items) |avatar_template| {
-        self.item_data.unlockAvatar(&avatar_template) catch continue;
+        if (templates.getAvatarTemplateConfig(@intCast(avatar_template.id))) |config| {
+            self.item_data.unlockAvatar(config) catch continue;
+        }
     }
 
     for (templates.weapon_template_tb.items) |weapon_template| {
