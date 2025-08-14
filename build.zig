@@ -28,6 +28,28 @@ pub fn build(b: *std.Build) void {
 
     registerRunCommand(b, opts, "orphie_dispatch_server", "run-orphie-dispatch", "Build and run the dispatch server");
     registerRunCommand(b, opts, "orphie_game_server", "run-orphie-gameserver", "Build and run the game server");
+
+    const dispatch_dep = b.dependency("orphie_dispatch_server", opts);
+    const dispatch_artifact = dispatch_dep.artifact("orphie_dispatch_server");
+    const game_dep = b.dependency("orphie_game_server", opts);
+    const game_artifact = game_dep.artifact("orphie_game_server");
+
+    if (protobuf_compiler_step) |protoc_step| {
+        dispatch_artifact.step.dependOn(protoc_step);
+        game_artifact.step.dependOn(protoc_step);
+    }
+
+    const dispatch_install = b.addInstallArtifact(dispatch_artifact, .{});
+    const game_install = b.addInstallArtifact(game_artifact, .{});
+
+    const dispatch_step = b.step("orphie_dispatch_server", "Build only the dispatch server");
+    dispatch_step.dependOn(&dispatch_install.step);
+
+    const game_step = b.step("orphie_game_server", "Build only the game server");
+    game_step.dependOn(&game_install.step);
+
+    b.installArtifact(dispatch_artifact);
+    b.installArtifact(game_artifact);
 }
 
 fn registerRunCommand(

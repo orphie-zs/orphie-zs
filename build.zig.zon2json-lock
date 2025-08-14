@@ -1,0 +1,24 @@
+{
+  "httpz-0.0.0-PNVzrC7CBgDSMZNP7chgAczR3FyAz5Eum6Kb1_K9kmYR": {
+    "name": "httpz",
+    "url": "git+https://github.com/karlseguin/http.zig?ref=master#2924ead41db9e1986db3b4909a82185c576f6361",
+    "hash": "sha256-zdAkWkRt1AKQZQsMbbr7+3g7wO4jDmMkF0M6R4KbSyw=",
+    "rev": "2924ead41db9e1986db3b4909a82185c576f6361"
+  },
+  "N-V-__8AAHOzAQBh8wB371GN1DXTl1mKs8Rdqj0sJea0U4P7": {
+    "name": "metrics",
+    "url": "https://github.com/karlseguin/metrics.zig/archive/cf2797bcb3aea7e5cdaf4de39c5550c70796e7b1.tar.gz",
+    "hash": "sha256-948NN050B9w+fXkQbGHB39ex5lPe2FyyFFoLVkKRUkA="
+  },
+  "websocket-0.1.0-ZPISdXNIAwCXG7oHBj4zc1CfmZcDeyR6hfTEOo8_YI4r": {
+    "name": "websocket",
+    "url": "https://github.com/karlseguin/websocket.zig/archive/7c3f1149bffcde1dec98dea88a442e2b580d750a.tar.gz",
+    "hash": "sha256-tDnyNptyRxQjrm0MqTmsy2F93yLBYDJE2KkqENJFW4Y="
+  },
+  "network-0.1.0-Pm-AghMmAQBfWhIrEM1V3X8VsqiCbCh0CrqNdPVwQ3LG": {
+    "name": "network",
+    "url": "git+https://github.com/ikskuh/zig-network?ref=master#8f6a156a547da4b20030effa40ecba8f63b467a1",
+    "hash": "sha256-Fn0Le6iIsVSdFKz22ZObvMar2PVwJQxg6AjJU9jjGhE=",
+    "rev": "8f6a156a547da4b20030effa40ecba8f63b467a1"
+  }
+}
