@@ -66,5 +66,5 @@ jobs:
           tag: ${{ github.ref_name }}
           title: "Release ${{ github.ref_name }}"
           release-dir: release-assets
-          release-notes: "Slave release ${{ github.ref_name }}"
+          release-notes: "Release ${{ github.ref_name }}"
           token: ${{ secrets.PERSONAL_TOKEN }}
