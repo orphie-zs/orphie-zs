@@ -13,6 +13,9 @@ const Self = @This();
 const hadal_zone_alivecount_zone_id: u32 = 61002;
 const hadal_zone_bosschallenge_zone_group: u32 = 69;
 
+const hadal_zone_enemy_property_scale: u32 = 19;
+const hadal_zone_bosschallenge_enemy_property_scale: u32 = 33;
+
 gpa: Allocator,
 scene_id: u32,
 zone_id: u32,
@@ -71,6 +74,13 @@ fn getPlayTypeByZoneId(zone_id: u32) LocalPlayType {
     return .hadal_zone;
 }
 
+fn getEnemyPropertyScaleByPlayType(play_type: LocalPlayType) u32 {
+    return switch (play_type) {
+        .hadal_zone_bosschallenge => hadal_zone_bosschallenge_enemy_property_scale,
+        else => hadal_zone_enemy_property_scale,
+    };
+}
+
 pub fn toProto(self: *const Self, allocator: Allocator) !ByName(.SceneData) {
     var hadal_zone_data = protocol.makeProto(.HadalZoneSceneData, .{
         .scene_perform = protocol.makeProto(.ScenePerformInfo, .{}, allocator),
@@ -87,10 +97,13 @@ pub fn toProto(self: *const Self, allocator: Allocator) !ByName(.SceneData) {
         if (avatar_id) |id| try protocol.addToList(&hadal_zone_data, .second_room_avatar_id_list, id);
     }
 
+    const play_type = getPlayTypeByZoneId(self.zone_id);
+
     return protocol.makeProto(.SceneData, .{
         .scene_type = @intFromEnum(SceneType.hadal_zone),
         .scene_id = self.scene_id,
-        .play_type = @intFromEnum(getPlayTypeByZoneId(self.zone_id)),
+        .play_type = @intFromEnum(play_type),
+        .enemy_property_scale = getEnemyPropertyScaleByPlayType(play_type),
         .hadal_zone_scene_data = hadal_zone_data,
     }, allocator);
 }

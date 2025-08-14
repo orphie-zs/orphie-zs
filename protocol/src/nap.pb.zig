@@ -83729,7 +83729,7 @@ pub const SceneData = struct {
     GBGJHHKDONL: ?NFMBLHDADHG = null,
     BNONNACGDMG: ?JICIMFAMBAI = null,
     EINPNALKFNP: bool = false,
-    DBLLIAJLDKC: u32 = 0,
+    enemy_property_scale: u32 = 0,
     KECIINCDGOM: ?OONGPPPGFOB = null,
     JPCHIEPCEON: u32 = 0,
 
@@ -83748,7 +83748,7 @@ pub const SceneData = struct {
         .GBGJHHKDONL = fd(12, null, .{ .SubMessage = {} }),
         .BNONNACGDMG = fd(13, null, .{ .SubMessage = {} }),
         .EINPNALKFNP = fd(14, null, .{ .Varint = .Simple }),
-        .DBLLIAJLDKC = fd(15, 13262, .{ .Varint = .Simple }),
+        .enemy_property_scale = fd(15, 13262, .{ .Varint = .Simple }),
         .KECIINCDGOM = fd(713, null, .{ .SubMessage = {} }),
         .JPCHIEPCEON = fd(1988, 13198, .{ .Varint = .Simple }),
     };
