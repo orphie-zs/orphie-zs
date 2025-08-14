@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: nixos-latest
+    env:
+      NIX_CONFIG: |
+        experimental-features = nix-command flakes
+        substituters = https://cache.nixos.org/ https://nix-community.cachix.org/
+        trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+
+    steps:
+      - name: Install nodejs and tools
+        run: |
+          nix profile install nixpkgs#nodejs nixpkgs#curl nixpkgs#jq nixpkgs#gnused nixpkgs#which nixpkgs#tea nixpkgs#gnugrep
+          echo "Node.js version: $(node --version)"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Nix environment
+        run: |
+          echo "Nix version: $(nix --version)"
+          echo "Flake inputs:"
+          nix flake show --json | head -20
+
+      - name: Cache Nix store
+        uses: actions/cache@v4
+        with:
+          path: /nix/store
+          key: nix-${{ runner.os }}-${{ hashFiles('**/flake.lock', '**/flake.nix') }}
+          restore-keys: |
+            nix-${{ runner.os }}-
+
+      - name: Build Linux servers
+        run: |
+          nix build .#default
+          mkdir -p artifacts-linux
+          cp result/bin/* artifacts-linux/
+          cp README.md LICENSE artifacts-linux/ 2>/dev/null || echo "README.md or LICENSE not found"
+          cp -r assets artifacts-linux/ 2>/dev/null || echo "assets directory not found"
+
+      - name: Build Windows servers
+        run: |
+          nix build .#windows
+          mkdir -p artifacts-windows
+          cp result/bin/* artifacts-windows/
+          cp README.md LICENSE artifacts-windows/ 2>/dev/null || echo "README.md or LICENSE not found"
+          cp -r assets artifacts-windows/ 2>/dev/null || echo "assets directory not found"
+
+      - name: Prepare release directory
+        run: |
+          mkdir -p release-assets
+          tar -czf release-assets/orphie-zs-linux.tar.gz -C artifacts-linux .
+          tar -czf release-assets/orphie-zs-windows.tar.gz -C artifacts-windows .
+
+      - name: Create Release
+        uses: https://code.forgejo.org/actions/forgejo-release@v2.7.2
+        with:
+          direction: upload
+          tag: ${{ github.ref_name }}
+          title: "Release ${{ github.ref_name }}"
+          release-dir: release-assets
+          release-notes: "Slave release ${{ github.ref_name }}"
+          token: ${{ secrets.PERSONAL_TOKEN }}
