@@ -85,7 +85,7 @@ pub fn onPlayerLoginCsReq(context: *NetContext, _: protocol.ByName(.PlayerLoginC
     };
 
     context.session.player_info = try PlayerInfo.init(uid, context.session.allocator);
-    try context.session.player_info.?.unlockAll(&context.session.globals.templates);
+    try context.session.player_info.?.onFirstLogin(context.session.globals);
     try context.session.player_info.?.addItemsFromSettings(&context.session.globals.gameplay_settings, &context.session.globals.templates);
     context.session.player_info.?.reset();
 

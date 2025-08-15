@@ -20,6 +20,7 @@ pub const UnlockConfigTemplate = TsvTable("UnlockConfigTemplateTb.tsv");
 pub const TeleportConfigTemplate = TsvTable("TeleportConfigTemplateTb.tsv");
 pub const PostGirlConfigTemplate = TsvTable("PostGirlConfigTemplateTb.tsv");
 pub const MainCityObjectTemplate = TsvTable("MainCityObjectTemplateTb.tsv");
+pub const SectionConfigTemplate = TsvTable("SectionConfigTemplateTb.tsv");
 pub const UrbanAreaMapTemplate = TsvTable("UrbanAreaMapTemplateTb.tsv");
 pub const UrbanAreaMapGroupTemplate = TsvTable("UrbanAreaMapGroupTemplateTb.tsv");
 pub const ZoneInfoTemplate = TsvTable("ZoneInfoTemplateTb.tsv");
@@ -51,6 +52,7 @@ pub const TemplateCollection = struct {
     teleport_config_template_tb: TemplateTb(TeleportConfigTemplate, .teleport_id),
     post_girl_config_template_tb: TemplateTb(PostGirlConfigTemplate, .id),
     main_city_object_template_tb: TemplateTb(MainCityObjectTemplate, .tag_id),
+    section_config_template_tb: TemplateTb(SectionConfigTemplate, .section_id),
     urban_area_map_template_tb: TemplateTb(UrbanAreaMapTemplate, .area_id),
     urban_area_map_group_template_tb: TemplateTb(UrbanAreaMapGroupTemplate, .area_group_id),
     zone_info_template_tb: TemplateTb(ZoneInfoTemplate, .zone_id),
@@ -134,6 +136,11 @@ pub const TemplateCollection = struct {
         }
 
         return null;
+    }
+
+    pub fn getSectionDefaultTransform(self: *const Self, section_id: u32) ?[]const u8 {
+        const config = self.getConfigByKey(.section_config_template_tb, @as(i32, @intCast(section_id))) orelse return null;
+        return config.default_transform;
     }
 
     pub fn deinit(self: *Self) void {

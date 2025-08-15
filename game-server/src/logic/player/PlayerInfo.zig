@@ -9,6 +9,7 @@ const property = @import("../property.zig");
 const PropertyPrimitive = property.PropertyPrimitive;
 const PropertyString = property.PropertyString;
 
+const Globals = @import("../../Globals.zig");
 const TemplateCollection = @import("../../data/templates.zig").TemplateCollection;
 const Avatar = @import("Avatar.zig");
 const ItemData = @import("ItemData.zig");
@@ -59,7 +60,12 @@ pub fn init(uid: u32, allocator: Allocator) !Self {
     };
 }
 
-pub fn unlockAll(self: *Self, templates: *const TemplateCollection) !void {
+pub fn onFirstLogin(self: *Self, globals: *const Globals) !void {
+    try self.unlockAll(&globals.templates);
+    try self.pos_in_main_city.setDefaultPosition(globals);
+}
+
+fn unlockAll(self: *Self, templates: *const TemplateCollection) !void {
     for (templates.avatar_base_template_tb.items) |avatar_template| {
         if (templates.getAvatarTemplateConfig(@intCast(avatar_template.id))) |config| {
             self.item_data.unlockAvatar(config) catch continue;

@@ -1,13 +1,12 @@
 const std = @import("std");
 const Transform = @import("../math/Transform.zig");
+const Globals = @import("../../Globals.zig");
+
 const Allocator = std.mem.Allocator;
 const ArenaAllocator = std.heap.ArenaAllocator;
 const StringMap = std.StringHashMapUnmanaged;
 
 const Self = @This();
-
-const default_section_id: u32 = 2;
-const default_transform_id: []const u8 = "Workshop_PlayerPos_Default";
 
 allocator: Allocator,
 section_id: u32,
@@ -19,8 +18,8 @@ lift_status_map: StringMap(u32),
 pub fn init(allocator: Allocator) !Self {
     return .{
         .allocator = allocator,
-        .section_id = default_section_id,
-        .last_transform_id = try allocator.dupe(u8, default_transform_id),
+        .section_id = 0,
+        .last_transform_id = "",
         .position = null,
         .lift_map_arena = ArenaAllocator.init(allocator),
         .lift_status_map = .empty,
@@ -30,6 +29,13 @@ pub fn init(allocator: Allocator) !Self {
 pub fn deinit(self: *Self) void {
     self.lift_map_arena.deinit();
     self.allocator.free(self.last_transform_id);
+}
+
+pub fn setDefaultPosition(self: *Self, globals: *const Globals) !void {
+    const section_id = globals.event_graph_map.default_main_city_section;
+    const transform_id = globals.templates.getSectionDefaultTransform(section_id) orelse return error.InvalidDefaultSection;
+
+    try self.switchSection(section_id, transform_id);
 }
 
 pub fn savePosition(self: *Self, position: []const f64, rotation: []const f64) void {
