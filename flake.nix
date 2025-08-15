@@ -38,7 +38,7 @@
             zigBuildZon = ./build.zig.zon;
             zigBuildZonLock = ./build.zig.zon2json-lock;
 
-            zigBuildFlags = [ "orphie_dispatch_server" ];
+            zigBuildFlags = [ "orphie_dispatch_server" "-Doptimize=ReleaseFast" ];
           }
           // (if target != null then { zigTarget = target; } else { })
         );
@@ -54,7 +54,7 @@
             zigBuildZon = ./build.zig.zon;
             zigBuildZonLock = ./build.zig.zon2json-lock;
 
-            zigBuildFlags = [ "orphie_game_server" ];
+            zigBuildFlags = [ "orphie_game_server" "-Doptimize=ReleaseFast" ];
           }
           // (if target != null then { zigTarget = target; } else { })
         );
