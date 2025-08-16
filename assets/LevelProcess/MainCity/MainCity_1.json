@@ -102,29 +102,46 @@
                                 "id": 203,
                                 "tag_id": 1004
                             },
-                           {
-                                "$type": "Share.CActionCreateNPCCfg",
-                                "id": 204,
-                                "tag_id": 1005
-                           },
-                           {
-                                "$type": "Share.CActionCreateNPCCfg",
-                                "id": 205,
-                                "tag_id": 2028
-                           },
-                           {
-                                "$type": "Share.CActionCreateNPCCfg",
-                                "id": 206,
-                                "tag_id": 520001
-                           }
+                            {
+                                 "$type": "Share.CActionCreateNPCCfg",
+                                 "id": 204,
+                                 "tag_id": 1005
+                            },
+                            {
+                                 "$type": "Share.CActionCreateNPCCfg",
+                                 "id": 205,
+                                 "tag_id": 2028
+                            },
+                            {
+                                 "$type": "Share.CActionCreateNPCCfg",
+                                 "id": 206,
+                                 "tag_id": 520001
+                            }
                         ]
                     },
                     "Sec2_EnterTrigger1": {
                         "id": 300,
                         "actions": [
                             {
+                                 "$type": "Share.CActionChangeInteractCfg",
+                                 "id": 301,
+                                 "interact_id": 10000014,
+                                 "tag_ids": [
+                                     1005
+                                 ],
+                                 "participators": {
+                                     "1005": "A"
+                                 },
+                                 "interact_shape": "Sphere",
+                                 "interact_scale": {
+                                     "x": 30.0,
+                                     "y": 1.0,
+                                     "z": 2.0
+                                 }
+                            },
+                            {
                                 "$type": "Share.CActionSetMainCityObjectState",
-                                "id": 301,
+                                "id": 399,
                                 "object_state": {
                                     "999": 10007,
                                     "1000": 10001,

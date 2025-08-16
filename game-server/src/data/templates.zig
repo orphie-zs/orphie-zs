@@ -18,6 +18,8 @@ pub const EquipmentSuitTemplate = TsvTable("EquipmentSuitTemplateTb.tsv");
 pub const EquipmentLevelTemplate = TsvTable("EquipmentLevelTemplateTb.tsv");
 pub const UnlockConfigTemplate = TsvTable("UnlockConfigTemplateTb.tsv");
 pub const TeleportConfigTemplate = TsvTable("TeleportConfigTemplateTb.tsv");
+pub const WorkBenchAppDexTemplate = TsvTable("WorkBenchAppDexTemplateTb.tsv");
+pub const ClueConfigTemplate = TsvTable("ClueConfigTemplateTb.tsv");
 pub const PostGirlConfigTemplate = TsvTable("PostGirlConfigTemplateTb.tsv");
 pub const MainCityObjectTemplate = TsvTable("MainCityObjectTemplateTb.tsv");
 pub const SectionConfigTemplate = TsvTable("SectionConfigTemplateTb.tsv");
@@ -50,6 +52,8 @@ pub const TemplateCollection = struct {
     equipment_level_template_tb: TemplateTb(EquipmentLevelTemplate, .level),
     unlock_config_template_tb: TemplateTb(UnlockConfigTemplate, .id),
     teleport_config_template_tb: TemplateTb(TeleportConfigTemplate, .teleport_id),
+    work_bench_app_dex_template_tb: TemplateTb(WorkBenchAppDexTemplate, .id),
+    clue_config_template_tb: TemplateTb(ClueConfigTemplate, .clue_id),
     post_girl_config_template_tb: TemplateTb(PostGirlConfigTemplate, .id),
     main_city_object_template_tb: TemplateTb(MainCityObjectTemplate, .tag_id),
     section_config_template_tb: TemplateTb(SectionConfigTemplate, .section_id),

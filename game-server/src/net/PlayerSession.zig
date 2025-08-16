@@ -23,6 +23,7 @@ const PacketHandlers = struct {
     pub const buddy = @import("../handlers/buddy.zig");
     pub const misc = @import("../handlers/misc.zig");
     pub const tips = @import("../handlers/tips.zig");
+    pub const collect = @import("../handlers/collect.zig");
     pub const world = @import("../handlers/world.zig");
     pub const map = @import("../handlers/map.zig");
     pub const time = @import("../handlers/time.zig");

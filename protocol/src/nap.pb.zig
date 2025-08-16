@@ -14941,20 +14941,20 @@ pub const AINCJNOKIPI = struct {
 
 pub const IGJKNADMKFP = struct {
     pub const CmdId = 0;
-    JEHNCPLNEOA: ArrayList(u32),
+    app_id_list: ArrayList(u32),
     FPCDBCOKKDG: ArrayList(i32),
     IEFFEKMEDOJ: ArrayList(i32),
     BFMAJIGHINL: ArrayList(i32),
-    IIIIBAPMKLH: ArrayList(i32),
+    clue_id_list: ArrayList(i32),
     BLAMFONGCEP: ArrayList(i32),
     MNDOLMKMKAO: ArrayList(i32),
 
     pub const _desc_table = .{
-        .JEHNCPLNEOA = fd(2, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .app_id_list = fd(2, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .FPCDBCOKKDG = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .IEFFEKMEDOJ = fd(5, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .BFMAJIGHINL = fd(8, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .IIIIBAPMKLH = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .clue_id_list = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .BLAMFONGCEP = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .MNDOLMKMKAO = fd(13, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
@@ -16711,14 +16711,14 @@ pub const JJIIPLJNMHD = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const GKFHKCAILIC = struct {
+pub const WorkBenchData = struct {
     pub const CmdId = 0;
-    MHNAKIPJKNE: ?OCNMPEIDAMD = null,
-    JEHNCPLNEOA: ArrayList(u32),
+    clue_board_info: ?ClueBoardInfo = null,
+    app_id_list: ArrayList(u32),
 
     pub const _desc_table = .{
-        .MHNAKIPJKNE = fd(1, null, .{ .SubMessage = {} }),
-        .JEHNCPLNEOA = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .clue_board_info = fd(1, null, .{ .SubMessage = {} }),
+        .app_id_list = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -34963,7 +34963,7 @@ pub const EBHMKIKGMFP = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const FHDAAIJIMGO = struct {
+pub const GetWorkBenchDataCsReq = struct {
     pub const CmdId = 6174;
 
     pub const _desc_table = .{};
@@ -36420,13 +36420,13 @@ pub const NBNPAMJNPJG = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const LJMKHKGADDG = struct {
+pub const GetWorkBenchDataScRsp = struct {
     pub const CmdId = 8954;
-    JMHDFDDMKDP: ?GKFHKCAILIC = null,
+    work_bench_data: ?WorkBenchData = null,
     retcode: i32 = 0,
 
     pub const _desc_table = .{
-        .JMHDFDDMKDP = fd(4, null, .{ .SubMessage = {} }),
+        .work_bench_data = fd(4, null, .{ .SubMessage = {} }),
         .retcode = fd(15, 5423, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -47928,18 +47928,18 @@ pub const IJMOGNFDKFO = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const OCNMPEIDAMD = struct {
+pub const ClueBoardInfo = struct {
     pub const CmdId = 0;
-    IIIIBAPMKLH: ArrayList(i32),
-    FKEIKDLCIJB: ArrayList(i32),
+    clue_id_list: ArrayList(i32),
+    new_clue_id_list: ArrayList(i32),
     MNDOLMKMKAO: ArrayList(i32),
     FPCDBCOKKDG: ArrayList(i32),
     BFMAJIGHINL: ArrayList(i32),
     IEFFEKMEDOJ: ArrayList(i32),
 
     pub const _desc_table = .{
-        .IIIIBAPMKLH = fd(1, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .FKEIKDLCIJB = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .clue_id_list = fd(1, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .new_clue_id_list = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .MNDOLMKMKAO = fd(6, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .FPCDBCOKKDG = fd(8, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .BFMAJIGHINL = fd(13, null, .{ .PackedList = .{ .Varint = .Simple } }),
@@ -61586,7 +61586,7 @@ pub const HPBEKGOBAHD = struct {
     GGFOBNLKMDH: ArrayList(u32),
     DPFJJFCCJII: u32 = 0,
     DNMEJIBEGJB: ArrayList(u32),
-    JEHNCPLNEOA: ArrayList(u32),
+    app_id_list: ArrayList(u32),
 
     pub const _desc_table = .{
         .DHLLBKDEEEB = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
@@ -61595,7 +61595,7 @@ pub const HPBEKGOBAHD = struct {
         .GGFOBNLKMDH = fd(6, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .DPFJJFCCJII = fd(10, 2031, .{ .Varint = .Simple }),
         .DNMEJIBEGJB = fd(13, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .JEHNCPLNEOA = fd(14, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .app_id_list = fd(14, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
