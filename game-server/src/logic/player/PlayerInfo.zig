@@ -100,102 +100,142 @@ pub fn addItemsFromSettings(self: *Self, settings: *const GameplaySettings, temp
             avatar.level = override.level;
             avatar.rank = @min(@divFloor(override.level, 10) + 1, 6);
             avatar.unlocked_talent_num = override.unlocked_talent_num;
+
+            if (override.weapon) |config| {
+                avatar.cur_weapon_uid = self.addWeaponByConfig(config, templates) catch |err| blk: {
+                    if (err == error.InvalidConfig) break :blk 0;
+                    return err;
+                };
+            }
+
+            for (override.equipment) |entry| {
+                const slot, const config = entry;
+
+                if (slot >= Avatar.equipment_num) {
+                    std.log.err(
+                        "invalid equip slot {} specified for avatar {}",
+                        .{ slot, override.id },
+                    );
+                    continue;
+                }
+
+                avatar.dressed_equip[slot] = self.addEquipmentByConfig(config, templates) catch |err| blk: {
+                    if (err == error.InvalidConfig) break :blk null;
+                    return err;
+                };
+            }
         } else {
             std.log.err("invalid avatar id {} in GameplaySettings", .{override.id});
         }
     }
 
     for (settings.weapons) |config| {
-        const template = templates.getConfigByKey(.weapon_template_tb, @as(i32, @intCast(config.id))) orelse {
-            std.log.err("invalid weapon id {} in GameplaySettings", .{config.id});
-            continue;
+        _ = self.addWeaponByConfig(config, templates) catch |err| {
+            if (err == error.InvalidConfig) continue;
+            return err;
         };
-
-        if (config.refine_level > template.refine_limit) {
-            std.log.err("specified refine_level ({}) exceeds refine_limit ({}) for weapon {}", .{
-                config.refine_level,
-                template.refine_limit,
-                config.id,
-            });
-            continue;
-        }
-
-        if (config.star > template.star_limit + 1) {
-            std.log.err("specified star ({}) exceeds star_limit ({}) for weapon {}", .{
-                config.star,
-                template.star_limit,
-                config.id,
-            });
-            continue;
-        }
-
-        const uid = self.item_data.nextUid();
-
-        try self.item_data.item_map.put(uid, .{ .weapon = .{
-            .id = config.id,
-            .uid = uid,
-            .level = config.level,
-            .star = config.star,
-            .refine_level = config.refine_level,
-            .exp = 0,
-            .lock = false,
-        } });
     }
 
     for (settings.equipment) |config| {
-        if (templates.getConfigByKey(.equipment_template_tb, @as(i32, @intCast(config.id))) == null) {
-            std.log.err("invalid equip id {} in GameplaySettings", .{config.id});
-            continue;
-        }
-
-        if (config.properties.len > ItemData.Equip.main_property_count) {
-            std.log.err("amount of equip properties is higher than allowed! ({}/{})", .{
-                config.properties.len,
-                ItemData.Equip.main_property_count,
-            });
-            continue;
-        }
-
-        if (config.sub_properties.len > ItemData.Equip.sub_property_count) {
-            std.log.err("amount of equip sub properties is higher than allowed! ({}/{})", .{
-                config.sub_properties.len,
-                ItemData.Equip.sub_property_count,
-            });
-            continue;
-        }
-
-        const uid = self.item_data.nextUid();
-
-        var equip = ItemData.Equip{
-            .id = config.id,
-            .uid = uid,
-            .level = config.level,
-            .star = config.star,
-            .exp = 0,
-            .properties = [_]?ItemData.Equip.Property{null} ** ItemData.Equip.main_property_count,
-            .sub_properties = [_]?ItemData.Equip.Property{null} ** ItemData.Equip.sub_property_count,
+        _ = self.addEquipmentByConfig(config, templates) catch |err| {
+            if (err == error.InvalidConfig) continue;
+            return err;
         };
-
-        for (config.properties, 0..config.properties.len) |prop, i| {
-            const key, const base_value, const add_value = prop;
-            equip.properties[i] = .{
-                .key = key,
-                .base_value = base_value,
-                .add_value = add_value,
-            };
-        }
-
-        for (config.sub_properties, 0..config.sub_properties.len) |prop, i| {
-            const key, const base_value, const add_value = prop;
-            equip.sub_properties[i] = .{
-                .key = key,
-                .base_value = base_value,
-                .add_value = add_value,
-            };
-        }
-
-        try self.item_data.item_map.put(uid, .{ .equip = equip });
     }
+}
+
+fn addWeaponByConfig(self: *Self, config: Globals.WeaponConfig, templates: *const TemplateCollection) !u32 {
+    const template = templates.getConfigByKey(.weapon_template_tb, @as(i32, @intCast(config.id))) orelse {
+        std.log.err("invalid weapon id {} in GameplaySettings", .{config.id});
+        return error.InvalidConfig;
+    };
+
+    if (config.refine_level > template.refine_limit) {
+        std.log.err("specified refine_level ({}) exceeds refine_limit ({}) for weapon {}", .{
+            config.refine_level,
+            template.refine_limit,
+            config.id,
+        });
+        return error.InvalidConfig;
+    }
+
+    if (config.star > template.star_limit + 1) {
+        std.log.err("specified star ({}) exceeds star_limit ({}) for weapon {}", .{
+            config.star,
+            template.star_limit,
+            config.id,
+        });
+        return error.InvalidConfig;
+    }
+
+    const uid = self.item_data.nextUid();
+
+    try self.item_data.item_map.put(uid, .{ .weapon = .{
+        .id = config.id,
+        .uid = uid,
+        .level = config.level,
+        .star = config.star,
+        .refine_level = config.refine_level,
+        .exp = 0,
+        .lock = false,
+    } });
+    return uid;
+}
+
+fn addEquipmentByConfig(self: *Self, config: Globals.EquipConfig, templates: *const TemplateCollection) !u32 {
+    if (templates.getConfigByKey(.equipment_template_tb, @as(i32, @intCast(config.id))) == null) {
+        std.log.err("invalid equip id {} in GameplaySettings", .{config.id});
+        return error.InvalidConfig;
+    }
+
+    if (config.properties.len > ItemData.Equip.main_property_count) {
+        std.log.err("amount of equip properties is higher than allowed! ({}/{})", .{
+            config.properties.len,
+            ItemData.Equip.main_property_count,
+        });
+        return error.InvalidConfig;
+    }
+
+    if (config.sub_properties.len > ItemData.Equip.sub_property_count) {
+        std.log.err("amount of equip sub properties is higher than allowed! ({}/{})", .{
+            config.sub_properties.len,
+            ItemData.Equip.sub_property_count,
+        });
+        return error.InvalidConfig;
+    }
+
+    const uid = self.item_data.nextUid();
+
+    var equip = ItemData.Equip{
+        .id = config.id,
+        .uid = uid,
+        .level = config.level,
+        .star = config.star,
+        .exp = 0,
+        .properties = [_]?ItemData.Equip.Property{null} ** ItemData.Equip.main_property_count,
+        .sub_properties = [_]?ItemData.Equip.Property{null} ** ItemData.Equip.sub_property_count,
+    };
+
+    for (config.properties, 0..config.properties.len) |prop, i| {
+        const key, const base_value, const add_value = prop;
+        equip.properties[i] = .{
+            .key = key,
+            .base_value = base_value,
+            .add_value = add_value,
+        };
+    }
+
+    for (config.sub_properties, 0..config.sub_properties.len) |prop, i| {
+        const key, const base_value, const add_value = prop;
+        equip.sub_properties[i] = .{
+            .key = key,
+            .base_value = base_value,
+            .add_value = add_value,
+        };
+    }
+
+    try self.item_data.item_map.put(uid, .{ .equip = equip });
+    return uid;
 }
 
 const properties_map: []const struct { u32, []const u32, u32, []const u32, u32 } = &.{

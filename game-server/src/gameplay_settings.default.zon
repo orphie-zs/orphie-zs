@@ -16,6 +16,35 @@
         //     .id = 1301, // Orphie's ID. See AvatarBaseTemplateTb for more.
         //     .level = 60,
         //     .unlocked_talent_num = 1, // Mindscape. By default it's set to 6.
+        //     // Optional: specify avatar weapon (will be automatically equipped)
+        //     .weapon = .{
+        //         .id = 14130, // Orphie's Signature W-Engine ID. See WeaponTemplateTb for more.
+        //         .level = 60,
+        //         .star = 5,
+        //         .refine_level = 1, // Overclock
+        //     },
+        //     // Optional: specify avatar drive discs (will be automatically equipped)
+        //     .equipment = .{
+        //         .{
+        //             0, // Slot (valid values are from 0 to 5)
+        //             .{
+        //                 .id = 32941, // ID of Shadow Harmony [1]. See EquipmentTemplateTb for more.
+        //                 .level = 15,
+        //                 .star = 1,
+        //                 .properties = .{
+        //                     // Only 1 main property is allowed.
+        //                     // SYNTAX: .{ property_type, base_value, add_value },
+        //                     .{ 11103, 550, 0 },
+        //                 },
+        //                 .sub_properties = .{
+        //                     // Up to 4 sub-properties is allowed.
+        //                     // SYNTAX: .{ property_type, base_value, add_value },
+        //                     .{ 12103, 19, 2 },
+        //                     .{ 13102, 480, 1 },
+        //                 },
+        //             },
+        //         },
+        //     },
         // },
     },
 

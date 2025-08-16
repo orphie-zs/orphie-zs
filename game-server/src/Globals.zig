@@ -23,6 +23,8 @@ pub const AvatarConfig = struct {
     id: u32,
     level: u32,
     unlocked_talent_num: u32,
+    weapon: ?WeaponConfig = null,
+    equipment: []const struct { u32, EquipConfig } = &.{},
 };
 
 pub const WeaponConfig = struct {
