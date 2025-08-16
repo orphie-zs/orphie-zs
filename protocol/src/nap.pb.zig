@@ -14868,12 +14868,12 @@ pub const FEPPFFMLBHC = struct {
 
 pub const TipsInfo = struct {
     pub const CmdId = 0;
-    EGIMEOOEAJG: ArrayList(i32),
-    JHCHOEOALBP: ArrayList(i32),
+    tips_group_list: ArrayList(i32),
+    tips_list: ArrayList(i32),
 
     pub const _desc_table = .{
-        .EGIMEOOEAJG = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .JHCHOEOALBP = fd(12, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .tips_group_list = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .tips_list = fd(12, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -19223,29 +19223,29 @@ pub const HNHEFNNGMHA = struct {
 
 pub const DLHEMMFOKCO = struct {
     pub const CmdId = 0;
-    CDINPOGNIGA: ArrayList(u32),
+    lock_tips_id_list: ArrayList(u32),
     PGMBDKNPNFM: ArrayList(DLHEMMFOKCO.PGMBDKNPNFMEntry),
     OODPNOKIFFG: ArrayList(u32),
     EIONDIKIJEI: ArrayList(u32),
     MNMNAJDBNPJ: ArrayList(u32),
     KFBICBDANIL: ArrayList(u32),
-    EGIMEOOEAJG: ArrayList(i32),
+    tips_group_list: ArrayList(i32),
     OFCEKBPDDGD: ArrayList(i32),
-    JHCHOEOALBP: ArrayList(i32),
+    tips_list: ArrayList(i32),
     NJMELOJEFEH: ArrayList(i32),
     IJCHLNADFDD: ArrayList(u32),
     KGEOMAFJPEM: ArrayList(i32),
 
     pub const _desc_table = .{
-        .CDINPOGNIGA = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .lock_tips_id_list = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .PGMBDKNPNFM = fd(4, null, .{ .List = .{ .SubMessage = {} } }),
         .OODPNOKIFFG = fd(5, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .EIONDIKIJEI = fd(6, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .MNMNAJDBNPJ = fd(8, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .KFBICBDANIL = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .EGIMEOOEAJG = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .tips_group_list = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .OFCEKBPDDGD = fd(11, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .JHCHOEOALBP = fd(12, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .tips_list = fd(12, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .NJMELOJEFEH = fd(13, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .IJCHLNADFDD = fd(14, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .KGEOMAFJPEM = fd(15, null, .{ .PackedList = .{ .Varint = .Simple } }),
@@ -32095,12 +32095,12 @@ pub const LFGHKMFKNDL = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const PFCNBGHLOJM = struct {
+pub const LockTipsInfo = struct {
     pub const CmdId = 0;
-    CDINPOGNIGA: ArrayList(u32),
+    lock_tips_id_list: ArrayList(u32),
 
     pub const _desc_table = .{
-        .CDINPOGNIGA = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .lock_tips_id_list = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -74609,14 +74609,14 @@ pub const TipsData = struct {
     tips: ?TipsInfo = null,
     INNFOMHKMAN: ?KEFPCAJJDIG = null,
     loading_page_tips: ?LoadingPageTipsInfo = null,
-    FEPOFPGEAPA: ?PFCNBGHLOJM = null,
+    lock_tips: ?LockTipsInfo = null,
     fairy: ?FairyInfo = null,
 
     pub const _desc_table = .{
         .tips = fd(1, null, .{ .SubMessage = {} }),
         .INNFOMHKMAN = fd(5, null, .{ .SubMessage = {} }),
         .loading_page_tips = fd(6, null, .{ .SubMessage = {} }),
-        .FEPOFPGEAPA = fd(11, null, .{ .SubMessage = {} }),
+        .lock_tips = fd(11, null, .{ .SubMessage = {} }),
         .fairy = fd(13, null, .{ .SubMessage = {} }),
     };
     pub fn getCmdId(_: *const @This()) u16 {

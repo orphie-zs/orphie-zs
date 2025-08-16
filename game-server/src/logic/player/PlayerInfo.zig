@@ -14,6 +14,7 @@ const TemplateCollection = @import("../../data/templates.zig").TemplateCollectio
 const Avatar = @import("Avatar.zig");
 const ItemData = @import("ItemData.zig");
 const MiscData = @import("MiscData.zig");
+const TipsInfo = @import("TipsInfo.zig");
 const CollectMap = @import("CollectMap.zig");
 const PosInMainCity = @import("PosInMainCity.zig");
 const MapData = @import("MapData.zig");
@@ -38,6 +39,7 @@ player_avatar_id: PropertyPrimitive(u32),
 control_guise_avatar_id: PropertyPrimitive(u32),
 item_data: ItemData,
 misc_data: MiscData,
+tips_info: TipsInfo,
 collect_map: CollectMap,
 pos_in_main_city: PosInMainCity,
 map_data: MapData,
@@ -56,6 +58,7 @@ pub fn init(uid: u32, allocator: Allocator) !Self {
         .control_guise_avatar_id = .init(1301),
         .item_data = .init(allocator),
         .misc_data = .init(allocator),
+        .tips_info = .init(allocator),
         .collect_map = .init(allocator),
         .pos_in_main_city = try .init(allocator),
         .map_data = .init(allocator),
@@ -88,6 +91,7 @@ fn unlockAll(self: *Self, templates: *const TemplateCollection) !void {
     }
 
     try self.misc_data.unlockAll(templates);
+    try self.tips_info.unlockAll(templates);
     try self.collect_map.unlockAll(templates);
     try self.map_data.unlockAll(templates);
 
