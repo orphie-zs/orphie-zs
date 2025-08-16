@@ -13488,28 +13488,28 @@ pub const JDGDKHGANKC = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const EAPKCFHLIMD = struct {
+pub const SwitchData = struct {
     pub const CmdId = 0;
     FANDGBJMBLH: bool = false,
     EJAMEPEONEK: u32 = 0,
-    MIAEEJFMALI: ArrayList(u32),
+    open_system_list: ArrayList(u32),
     GIGHJMIBAGP: u32 = 0,
-    HIJAIDIGDPJ: ArrayList(EAPKCFHLIMD.HIJAIDIGDPJEntry),
+    HIJAIDIGDPJ: ArrayList(SwitchData.HIJAIDIGDPJEntry),
     ICBGHKAGAMB: bool = false,
-    IGPGPDAKIGJ: u32 = 0,
+    cur_bgm_id: u32 = 0,
     NOFFFAELJGN: bool = false,
     LBCLEFEOJJD: bool = false,
-    AJPLCEKGEPH: ArrayList(EAPKCFHLIMD.AJPLCEKGEPHEntry),
+    AJPLCEKGEPH: ArrayList(SwitchData.AJPLCEKGEPHEntry),
     IEMENPADOAK: ArrayList(MCIJLNGEDCO),
 
     pub const _desc_table = .{
         .FANDGBJMBLH = fd(1, null, .{ .Varint = .Simple }),
         .EJAMEPEONEK = fd(2, 613, .{ .Varint = .Simple }),
-        .MIAEEJFMALI = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
+        .open_system_list = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .GIGHJMIBAGP = fd(4, 11646, .{ .Varint = .Simple }),
         .HIJAIDIGDPJ = fd(5, null, .{ .List = .{ .SubMessage = {} } }),
         .ICBGHKAGAMB = fd(6, null, .{ .Varint = .Simple }),
-        .IGPGPDAKIGJ = fd(7, 12460, .{ .Varint = .Simple }),
+        .cur_bgm_id = fd(7, 12460, .{ .Varint = .Simple }),
         .NOFFFAELJGN = fd(9, null, .{ .Varint = .Simple }),
         .LBCLEFEOJJD = fd(12, null, .{ .Varint = .Simple }),
         .AJPLCEKGEPH = fd(13, null, .{ .List = .{ .SubMessage = {} } }),
@@ -17207,7 +17207,7 @@ pub const KECDNPDFHPN = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const LPLCIDKCKAC = struct {
+pub const GetSwitchDataCsReq = struct {
     pub const CmdId = 8494;
     type: u32 = 0,
 
@@ -17860,16 +17860,16 @@ pub const MPPJLOKBNFM = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const IBMLNNDPMJM = struct {
+pub const GetSwitchDataScRsp = struct {
     pub const CmdId = 4768;
     retcode: i32 = 0,
-    ABMKIKGMIIO: ?EAPKCFHLIMD = null,
+    switch_data: ?SwitchData = null,
     type: u32 = 0,
-    JLCEJBLLGDD: ArrayList(IBMLNNDPMJM.JLCEJBLLGDDEntry),
+    JLCEJBLLGDD: ArrayList(GetSwitchDataScRsp.JLCEJBLLGDDEntry),
 
     pub const _desc_table = .{
         .retcode = fd(3, 14749, .{ .Varint = .Simple }),
-        .ABMKIKGMIIO = fd(7, null, .{ .SubMessage = {} }),
+        .switch_data = fd(7, null, .{ .SubMessage = {} }),
         .type = fd(10, 2366, .{ .Varint = .Simple }),
         .JLCEJBLLGDD = fd(14, null, .{ .List = .{ .SubMessage = {} } }),
     };
@@ -60161,11 +60161,11 @@ pub const BOCBKMPOIMD = struct {
 pub const JJIHKEHMLFA = struct {
     pub const CmdId = 4417;
     quest_id: u32 = 0,
-    IGPGPDAKIGJ: u32 = 0,
+    cur_bgm_id: u32 = 0,
 
     pub const _desc_table = .{
         .quest_id = fd(8, 15287, .{ .Varint = .Simple }),
-        .IGPGPDAKIGJ = fd(13, 3833, .{ .Varint = .Simple }),
+        .cur_bgm_id = fd(13, 3833, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -67197,11 +67197,11 @@ pub const FGOCGJKDHPO = struct {
 pub const IJLJKLPEEHD = struct {
     pub const CmdId = 8777;
     type: u32 = 0,
-    ABMKIKGMIIO: ?EAPKCFHLIMD = null,
+    switch_data: ?SwitchData = null,
 
     pub const _desc_table = .{
         .type = fd(1, 2005, .{ .Varint = .Simple }),
-        .ABMKIKGMIIO = fd(13, null, .{ .SubMessage = {} }),
+        .switch_data = fd(13, null, .{ .SubMessage = {} }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -88527,10 +88527,10 @@ pub const BIMBGBJFONL = struct {
 
 pub const FLAFPGOBJFM = struct {
     pub const CmdId = 3895;
-    IGPGPDAKIGJ: u32 = 0,
+    cur_bgm_id: u32 = 0,
 
     pub const _desc_table = .{
-        .IGPGPDAKIGJ = fd(3, 13117, .{ .Varint = .Simple }),
+        .cur_bgm_id = fd(3, 13117, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;

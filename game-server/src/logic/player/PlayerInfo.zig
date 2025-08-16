@@ -13,6 +13,7 @@ const Globals = @import("../../Globals.zig");
 const TemplateCollection = @import("../../data/templates.zig").TemplateCollection;
 const Avatar = @import("Avatar.zig");
 const ItemData = @import("ItemData.zig");
+const SwitchData = @import("SwitchData.zig");
 const MiscData = @import("MiscData.zig");
 const TipsInfo = @import("TipsInfo.zig");
 const CollectMap = @import("CollectMap.zig");
@@ -38,6 +39,7 @@ avatar_id: PropertyPrimitive(u32),
 player_avatar_id: PropertyPrimitive(u32),
 control_guise_avatar_id: PropertyPrimitive(u32),
 item_data: ItemData,
+switch_data: SwitchData,
 misc_data: MiscData,
 tips_info: TipsInfo,
 collect_map: CollectMap,
@@ -57,6 +59,7 @@ pub fn init(uid: u32, allocator: Allocator) !Self {
         .player_avatar_id = .init(2011),
         .control_guise_avatar_id = .init(1301),
         .item_data = .init(allocator),
+        .switch_data = .init(allocator),
         .misc_data = .init(allocator),
         .tips_info = .init(allocator),
         .collect_map = .init(allocator),
@@ -90,6 +93,7 @@ fn unlockAll(self: *Self, templates: *const TemplateCollection) !void {
         try self.item_data.unlockSkin(@intCast(skin_template.id));
     }
 
+    try self.switch_data.openAllSystems();
     try self.misc_data.unlockAll(templates);
     try self.tips_info.unlockAll(templates);
     try self.collect_map.unlockAll(templates);

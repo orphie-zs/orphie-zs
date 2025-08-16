@@ -7,6 +7,14 @@ pub fn onVideoGetInfoCsReq(context: *NetContext, _: protocol.ByName(.VideoGetInf
     return protocol.makeProto(.VideoGetInfoScRsp, .{}, context.arena);
 }
 
+pub fn onGetSwitchDataCsReq(context: *NetContext, req: protocol.ByName(.GetSwitchDataCsReq)) !protocol.ByName(.GetSwitchDataScRsp) {
+    return protocol.makeProto(.GetSwitchDataScRsp, .{
+        .retcode = 0,
+        .type = protocol.getField(req, .type, u32) orelse 0,
+        .switch_data = try context.session.player_info.?.switch_data.toProto(context.arena),
+    }, context.arena);
+}
+
 pub fn onGetMiscDataCsReq(context: *NetContext, _: protocol.ByName(.GetMiscDataCsReq)) !protocol.ByName(.GetMiscDataScRsp) {
     return protocol.makeProto(.GetMiscDataScRsp, .{
         .retcode = 0,
