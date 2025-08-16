@@ -55,6 +55,11 @@
                                 "$type": "Share.CActionCreateNPCCfg",
                                 "id": 204,
                                 "tag_id": 2018
+                            },
+                            {
+                                "$type": "Share.CActionCreateNPCCfg",
+                                "id": 205,
+                                "tag_id": 1011
                             }
                         ]
                     }

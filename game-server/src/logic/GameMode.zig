@@ -37,7 +37,7 @@ pub fn loadHallState(player_info: *PlayerInfo, globals: *const Globals, allocato
 }
 
 pub fn loadFightState(player_info: *PlayerInfo, templates: *const TemplateCollection, avatar_ids: []const u32, allocator: Allocator) !Self {
-    var dungeon = Dungeon.init(player_info, templates, allocator);
+    var dungeon = try Dungeon.init(player_info, templates, allocator);
     errdefer dungeon.deinit();
 
     for (avatar_ids) |id| {
@@ -61,12 +61,14 @@ pub fn loadHadalZoneState(
     templates: *const TemplateCollection,
     first_room_avatars: []const u32,
     second_room_avatars: []const u32,
+    first_room_buddy_id: u32,
+    second_room_buddy_id: u32,
     zone_id: u32,
     layer_index: u32,
     layer_item_id: u32,
     allocator: Allocator,
 ) !Self {
-    var dungeon = Dungeon.init(player_info, templates, allocator);
+    var dungeon = try Dungeon.init(player_info, templates, allocator);
     errdefer dungeon.deinit();
 
     for (first_room_avatars) |id| {
@@ -75,6 +77,14 @@ pub fn loadHadalZoneState(
 
     for (second_room_avatars) |id| {
         try dungeon.addAvatarFighter(id, Dungeon.PackageType.player);
+    }
+
+    if (first_room_buddy_id != 0) {
+        try dungeon.addBuddyFighter(first_room_buddy_id, Dungeon.PackageType.player);
+    }
+
+    if (second_room_buddy_id != 0) {
+        try dungeon.addBuddyFighter(second_room_buddy_id, Dungeon.PackageType.player);
     }
 
     const base_zone_id = if (zone_id / 1000 != hadal_static_zone_group) ((zone_id / 1000) * 1000) + 1 else zone_id;
@@ -104,6 +114,8 @@ pub fn loadHadalZoneState(
             layer_item_id,
             first_room_avatars,
             second_room_avatars,
+            first_room_buddy_id,
+            second_room_buddy_id,
             allocator,
         ) },
         .dungeon = dungeon,

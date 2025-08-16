@@ -3,8 +3,10 @@ const protocol = @import("protocol");
 
 const TemplateCollection = @import("../data/templates.zig").TemplateCollection;
 const AvatarUnit = @import("battle/AvatarUnit.zig");
+const BuddyUnit = @import("battle/BuddyUnit.zig");
 const PlayerInfo = @import("player/PlayerInfo.zig");
 const Avatar = @import("player/Avatar.zig");
+const Buddy = @import("player/Buddy.zig");
 const ItemData = @import("player/ItemData.zig");
 
 const Allocator = std.mem.Allocator;
@@ -18,17 +20,24 @@ begin_time: i64,
 player: *PlayerInfo,
 templates: *const TemplateCollection,
 avatar_units: std.ArrayListUnmanaged(AvatarUnit),
+buddy_units: std.ArrayListUnmanaged(BuddyUnit),
 package_items: std.ArrayListUnmanaged(PackageItem),
 
-pub fn init(player: *PlayerInfo, templates: *const TemplateCollection, allocator: Allocator) Self {
-    return .{
+pub fn init(player: *PlayerInfo, templates: *const TemplateCollection, allocator: Allocator) !Self {
+    var self = Self{
         .allocator = allocator,
         .player = player,
         .templates = templates,
         .begin_time = std.time.timestamp(),
         .avatar_units = .empty,
+        .buddy_units = .empty,
         .package_items = .empty,
     };
+
+    // assisting buddy (Eous) is added in every battle by default
+    try self.buddy_units.append(self.allocator, try BuddyUnit.initAssistingBuddy());
+
+    return self;
 }
 
 pub fn deinit(self: *Self) void {
@@ -36,7 +45,12 @@ pub fn deinit(self: *Self) void {
         unit.deinit();
     }
 
+    for (self.buddy_units.items) |*unit| {
+        unit.deinit();
+    }
+
     self.avatar_units.deinit(self.allocator);
+    self.buddy_units.deinit(self.allocator);
     self.package_items.deinit(self.allocator);
 }
 
@@ -79,6 +93,22 @@ pub fn addAvatarFighter(self: *Self, id: u32, package: PackageType) !void {
     }
 }
 
+pub fn addBuddyFighter(self: *Self, id: u32, package: PackageType) !void {
+    if (package != PackageType.player) {
+        std.log.err("dungeon-scoped items are not supported yet", .{});
+        return;
+    }
+
+    if (self.player.item_data.getItemAs(Buddy, id)) |buddy| {
+        try self.package_items.append(self.allocator, .{ .player = id });
+
+        const buddy_unit = try BuddyUnit.init(&buddy, .fighting);
+        try self.buddy_units.append(self.allocator, buddy_unit);
+    } else {
+        return error.BuddyNotUnlocked;
+    }
+}
+
 pub fn toProto(self: *const Self, allocator: Allocator) !ByName(.DungeonInfo) {
     var proto = protocol.makeProto(.DungeonInfo, .{
         .quest_id = self.quest_id,
@@ -101,6 +131,10 @@ pub fn toProto(self: *const Self, allocator: Allocator) !ByName(.DungeonInfo) {
 
     for (self.avatar_units.items) |unit| {
         try protocol.addToList(&proto, .avatar_list, try unit.toProto(allocator));
+    }
+
+    for (self.buddy_units.items) |unit| {
+        try protocol.addToList(&proto, .buddy_list, try unit.toProto(allocator));
     }
 
     protocol.setFields(&proto, .{ .dungeon_package_info = package });

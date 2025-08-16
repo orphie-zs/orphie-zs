@@ -10,6 +10,8 @@ const LocalPlayType = scene_base.LocalPlayType;
 
 const Self = @This();
 
+const room_count: usize = 2;
+
 const hadal_zone_alivecount_zone_id: u32 = 61002;
 const hadal_zone_bosschallenge_zone_group: u32 = 69;
 
@@ -23,9 +25,20 @@ layer_index: u32,
 layer_item_id: u32,
 first_room_avatars: [3]?u32,
 second_room_avatars: [3]?u32,
+buddy_ids: [room_count]u32,
 is_in_transition: bool = true,
 
-pub fn create(scene_id: u32, zone_id: u32, layer_index: u32, layer_item_id: u32, first_room_avatar_list: []const u32, second_room_avatar_list: []const u32, gpa: Allocator) !*Self {
+pub fn create(
+    scene_id: u32,
+    zone_id: u32,
+    layer_index: u32,
+    layer_item_id: u32,
+    first_room_avatar_list: []const u32,
+    second_room_avatar_list: []const u32,
+    first_room_buddy_id: u32,
+    second_room_buddy_id: u32,
+    gpa: Allocator,
+) !*Self {
     const ptr = try gpa.create(Self);
 
     const first_room_avatars = initAvatarList(first_room_avatar_list);
@@ -39,6 +52,7 @@ pub fn create(scene_id: u32, zone_id: u32, layer_index: u32, layer_item_id: u32,
         .layer_item_id = layer_item_id,
         .first_room_avatars = first_room_avatars,
         .second_room_avatars = second_room_avatars,
+        .buddy_ids = .{ first_room_buddy_id, second_room_buddy_id },
     };
 
     return ptr;
@@ -87,6 +101,8 @@ pub fn toProto(self: *const Self, allocator: Allocator) !ByName(.SceneData) {
         .zone_id = self.zone_id,
         .layer_index = self.layer_index,
         .layer_item_id = self.layer_item_id,
+        .first_room_buddy_id = self.buddy_ids[0],
+        .second_room_buddy_id = self.buddy_ids[1],
     }, allocator);
 
     for (self.first_room_avatars) |avatar_id| {

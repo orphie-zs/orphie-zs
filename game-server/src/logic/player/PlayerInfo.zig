@@ -81,6 +81,10 @@ fn unlockAll(self: *Self, templates: *const TemplateCollection) !void {
         }
     }
 
+    for (templates.buddy_base_template_tb.items) |buddy_template| {
+        self.item_data.unlockBuddy(buddy_template) catch continue;
+    }
+
     for (templates.weapon_template_tb.items) |weapon_template| {
         try self.item_data.addWeapon(weapon_template);
     }

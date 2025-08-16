@@ -3,6 +3,7 @@ const property = @import("../property.zig");
 const protocol = @import("protocol");
 const templates = @import("../../data/templates.zig");
 const Avatar = @import("Avatar.zig");
+const Buddy = @import("Buddy.zig");
 
 const PropertyHashMap = property.PropertyHashMap;
 const Allocator = std.mem.Allocator;
@@ -10,6 +11,7 @@ const ByName = protocol.ByName;
 
 const AvatarTemplateConfiguration = templates.AvatarTemplateConfiguration;
 const WeaponTemplate = templates.WeaponTemplate;
+const BuddyBaseTemplate = templates.BuddyBaseTemplate;
 
 const Self = @This();
 
@@ -82,6 +84,17 @@ pub fn unlockAvatar(self: *Self, config: AvatarTemplateConfiguration) !void {
     }
 
     try self.item_map.put(id, .{ .avatar = Avatar.init(config) });
+}
+
+pub fn unlockBuddy(self: *Self, template: BuddyBaseTemplate) !void {
+    if (template.id >= 55_000) return error.BuddyIsNotUnlockable;
+
+    const id: u32 = @intCast(template.id);
+    if (self.item_map.contains(id)) {
+        return error.BuddyAlreadyUnlocked;
+    }
+
+    try self.item_map.put(id, .{ .buddy = Buddy.init(template) });
 }
 
 pub fn unlockSkin(self: *Self, id: u32) !void {
@@ -259,6 +272,7 @@ pub const ItemType = enum(u32) {
     avatar,
     weapon,
     equip,
+    buddy,
     dress,
 };
 
@@ -267,6 +281,7 @@ pub const Item = union(ItemType) {
     avatar: Avatar,
     weapon: Weapon,
     equip: Equip,
+    buddy: Buddy,
     dress: Dress,
 
     pub fn addToProto(self: *const @This(), container: anytype, allocator: Allocator) !void {

@@ -180,6 +180,8 @@ pub fn onStartHadalZoneBattleCsReq(context: *NetContext, req: protocol.ByName(.S
     const retcode: i32 = blk: {
         const first_room_avatar_id_list = protocol.getField(req, .first_room_avatar_id_list, std.ArrayList(u32)) orelse break :blk 1;
         const second_room_avatar_id_list = protocol.getField(req, .second_room_avatar_id_list, std.ArrayList(u32)) orelse break :blk 1;
+        const first_room_buddy_id = protocol.getField(req, .first_room_buddy_id, u32) orelse 0;
+        const second_room_buddy_id = protocol.getField(req, .second_room_buddy_id, u32) orelse 0;
         const zone_id = protocol.getField(req, .zone_id, u32) orelse break :blk 1;
         const layer_index = protocol.getField(req, .layer_index, u32) orelse break :blk 1;
         const layer_item_id = protocol.getField(req, .layer_item_id, u32) orelse 0;
@@ -189,6 +191,8 @@ pub fn onStartHadalZoneBattleCsReq(context: *NetContext, req: protocol.ByName(.S
             &context.session.globals.templates,
             first_room_avatar_id_list.items,
             second_room_avatar_id_list.items,
+            first_room_buddy_id,
+            second_room_buddy_id,
             zone_id,
             layer_index,
             layer_item_id,

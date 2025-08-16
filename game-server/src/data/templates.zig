@@ -16,6 +16,7 @@ pub const WeaponStarTemplate = TsvTable("WeaponStarTemplateTb.tsv");
 pub const EquipmentTemplate = TsvTable("EquipmentTemplateTb.tsv");
 pub const EquipmentSuitTemplate = TsvTable("EquipmentSuitTemplateTb.tsv");
 pub const EquipmentLevelTemplate = TsvTable("EquipmentLevelTemplateTb.tsv");
+pub const BuddyBaseTemplate = TsvTable("BuddyBaseTemplateTb.tsv");
 pub const UnlockConfigTemplate = TsvTable("UnlockConfigTemplateTb.tsv");
 pub const TeleportConfigTemplate = TsvTable("TeleportConfigTemplateTb.tsv");
 pub const TipsConfigTemplate = TsvTable("TipsConfigTemplateTb.tsv");
@@ -54,6 +55,7 @@ pub const TemplateCollection = struct {
     equipment_template_tb: TemplateTb(EquipmentTemplate, .item_id),
     equipment_suit_template_tb: TemplateTb(EquipmentSuitTemplate, .id),
     equipment_level_template_tb: TemplateTb(EquipmentLevelTemplate, .level),
+    buddy_base_template_tb: TemplateTb(BuddyBaseTemplate, .id),
     unlock_config_template_tb: TemplateTb(UnlockConfigTemplate, .id),
     teleport_config_template_tb: TemplateTb(TeleportConfigTemplate, .teleport_id),
     tips_config_template_tb: TemplateTb(TipsConfigTemplate, .tips_id),

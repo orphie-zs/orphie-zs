@@ -7436,11 +7436,11 @@ pub const HollowGridLink = enum(i32) {
     _,
 };
 
-pub const DJNFNLBBIEG = enum(i32) {
-    DJNFNLBBIEG_ONHIIKCPKDF = 0,
-    DJNFNLBBIEG_PFFNAOMBONO = 1,
-    DJNFNLBBIEG_JNPFIOPNDOK = 2,
-    DJNFNLBBIEG_HMICFFKBLCL = 3,
+pub const BuddyTeamType = enum(i32) {
+    BuddyTeamType_ONHIIKCPKDF = 0,
+    BuddyTeamType_PFFNAOMBONO = 1,
+    BuddyTeamType_JNPFIOPNDOK = 2,
+    BuddyTeamType_HMICFFKBLCL = 3,
     _,
 };
 
@@ -8879,11 +8879,11 @@ pub const CEKNGOBNNMC = struct {
 
 pub const FFCICIDGPOH = struct {
     pub const CmdId = 1554;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     DAAJOKCFLND: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(7, 11399, .{ .Varint = .Simple }),
+        .buddy_id = fd(7, 11399, .{ .Varint = .Simple }),
         .DAAJOKCFLND = fd(12, 13441, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -9315,11 +9315,11 @@ pub const NOGBFIHFKAP = struct {
 
 pub const BPEANJICJAG = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: u32 = 0,
-    MGIIAMNPHBM: DJNFNLBBIEG = @enumFromInt(0),
+    buddy_id: u32 = 0,
+    MGIIAMNPHBM: BuddyTeamType = @enumFromInt(0),
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, 13029, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, 13029, .{ .Varint = .Simple }),
         .MGIIAMNPHBM = fd(7, null, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -9562,13 +9562,13 @@ pub const HLFHGPAPMFB = struct {
     name: ManagedString = .Empty,
     CMDMCGIAJPH: u32 = 0,
     avatar_list: ArrayList(LEKLOILHFHG),
-    NAAIIFJECCA: ArrayList(BLEDEEPDPDB),
+    buddy_list: ArrayList(BLEDEEPDPDB),
 
     pub const _desc_table = .{
         .name = fd(6, null, .String),
         .CMDMCGIAJPH = fd(8, 7254, .{ .Varint = .Simple }),
         .avatar_list = fd(12, null, .{ .List = .{ .SubMessage = {} } }),
-        .NAAIIFJECCA = fd(13, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(13, null, .{ .List = .{ .SubMessage = {} } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -11963,10 +11963,10 @@ pub const CJIMFNFJEGJ = struct {
 
 pub const BLEDEEPDPDB = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(2, 8832, .{ .Varint = .Simple }),
+        .buddy_id = fd(2, 8832, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -12881,7 +12881,7 @@ pub const POPLMGDEDMO = struct {
 pub const PGBFANHPGHH = struct {
     pub const CmdId = 0;
     DCLDEKODKPD: u32 = 0,
-    NAAIIFJECCA: ArrayList(PAHHHGNIJHB),
+    buddy_list: ArrayList(BuddyInfo),
     KFPOKKAFLCD: ArrayList(u32),
     FBFFABMIFJN: ArrayList(u32),
     ALPNHHEJLCB: ArrayList(u32),
@@ -12889,7 +12889,7 @@ pub const PGBFANHPGHH = struct {
 
     pub const _desc_table = .{
         .DCLDEKODKPD = fd(3, 3042, .{ .Varint = .Simple }),
-        .NAAIIFJECCA = fd(8, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(8, null, .{ .List = .{ .SubMessage = {} } }),
         .KFPOKKAFLCD = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .FBFFABMIFJN = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .ALPNHHEJLCB = fd(12, null, .{ .PackedList = .{ .Varint = .Simple } }),
@@ -17777,11 +17777,11 @@ pub const JODMJCFLLJO = struct {
 pub const HEKCHBEDBOI = struct {
     pub const CmdId = 7116;
     FCFPPEEKOMB: i32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .FCFPPEEKOMB = fd(5, 13136, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(14, 4864, .{ .Varint = .Simple }),
+        .buddy_id = fd(14, 4864, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -17832,10 +17832,10 @@ pub const MFCMDOOLLKC = struct {
 
 pub const FEHHGGDMBLF = struct {
     pub const CmdId = 2138;
-    NAAIIFJECCA: ArrayList(ACAKCLMPIJI),
+    buddy_list: ArrayList(BuddyUnitInfo),
 
     pub const _desc_table = .{
-        .NAAIIFJECCA = fd(2, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(2, null, .{ .List = .{ .SubMessage = {} } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -18028,7 +18028,7 @@ pub const PPMLOOHIEIC = struct {
     star: u32 = 0,
     exp: u32 = 0,
     AOBABLGLAEM: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     level: u32 = 0,
     rank: u32 = 0,
 
@@ -18037,7 +18037,7 @@ pub const PPMLOOHIEIC = struct {
         .star = fd(4, 5820, .{ .Varint = .Simple }),
         .exp = fd(6, 14110, .{ .Varint = .Simple }),
         .AOBABLGLAEM = fd(7, 3617, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(8, 1906, .{ .Varint = .Simple }),
+        .buddy_id = fd(8, 1906, .{ .Varint = .Simple }),
         .level = fd(13, 1095, .{ .Varint = .Simple }),
         .rank = fd(15, 15286, .{ .Varint = .Simple }),
     };
@@ -21435,11 +21435,11 @@ pub const LOCADAGIKEH = struct {
 
 pub const NIMLIEALOLD = struct {
     pub const CmdId = 0;
-    NAAIIFJECCA: ArrayList(HNHGDBINCPC),
+    buddy_list: ArrayList(HNHGDBINCPC),
     FEAABEHNAAF: ArrayList(u32),
 
     pub const _desc_table = .{
-        .NAAIIFJECCA = fd(5, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(5, null, .{ .List = .{ .SubMessage = {} } }),
         .FEAABEHNAAF = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -21754,7 +21754,7 @@ pub const OEEMEGGBGIK = struct {
     EDGHJHEKLEJ: u32 = 0,
     PJEHLBEIJPL: ArrayList(u32),
     FDGBNLKBPPI: bool = false,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     BDAPDFMKBPH: ArrayList(u32),
     EECBPLKECDK: u32 = 0,
 
@@ -21765,7 +21765,7 @@ pub const OEEMEGGBGIK = struct {
         .EDGHJHEKLEJ = fd(7, 777, .{ .Varint = .Simple }),
         .PJEHLBEIJPL = fd(9, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .FDGBNLKBPPI = fd(11, null, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(12, 4245, .{ .Varint = .Simple }),
+        .buddy_id = fd(12, 4245, .{ .Varint = .Simple }),
         .BDAPDFMKBPH = fd(13, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .EECBPLKECDK = fd(15, 15814, .{ .Varint = .Simple }),
     };
@@ -25718,7 +25718,7 @@ pub const FGEFIOPPKPK = struct {
     star: i32 = 0,
     ALHGKDNLOPA: ArrayList(i32),
     PFLCNNIHKGL: ?ADCIHIGKFKM = null,
-    NAAIIFJECCA: ArrayList(ACJNBKMDMPH),
+    buddy_list: ArrayList(ACJNBKMDMPH),
     LANOOEGJKCH: u32 = 0,
     GBIFBPJCCNK: ?PMOBCPBHENE = null,
     ANDAKCJIIBL: ArrayList(FGEFIOPPKPK.ANDAKCJIIBLEntry),
@@ -25749,7 +25749,7 @@ pub const FGEFIOPPKPK = struct {
         .star = fd(11, null, .{ .Varint = .Simple }),
         .ALHGKDNLOPA = fd(12, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .PFLCNNIHKGL = fd(13, null, .{ .SubMessage = {} }),
-        .NAAIIFJECCA = fd(14, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(14, null, .{ .List = .{ .SubMessage = {} } }),
         .LANOOEGJKCH = fd(15, null, .{ .Varint = .Simple }),
         .GBIFBPJCCNK = fd(17, null, .{ .SubMessage = {} }),
         .ANDAKCJIIBL = fd(18, null, .{ .List = .{ .SubMessage = {} } }),
@@ -26287,12 +26287,12 @@ pub const CDKJDNDPDKN = struct {
 pub const OPKPALNOAHM = struct {
     pub const CmdId = 0;
     OJCNMJCLJAD: i32 = 0,
-    HKAPKGOMNJG: i32 = 0,
+    buddy_id: i32 = 0,
     EBGPIJBNFAK: i32 = 0,
 
     pub const _desc_table = .{
         .OJCNMJCLJAD = fd(1, null, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(2, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(2, null, .{ .Varint = .Simple }),
         .EBGPIJBNFAK = fd(3, null, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -26953,12 +26953,12 @@ pub const NNCCDJECELE = struct {
 
 pub const ELLPMGKCLEK = struct {
     pub const CmdId = 8537;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     LPCIPJNEPGJ: u32 = 0,
     GHMEHJEFLKD: ArrayList(ELLPMGKCLEK.GHMEHJEFLKDEntry),
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(5, 5225, .{ .Varint = .Simple }),
+        .buddy_id = fd(5, 5225, .{ .Varint = .Simple }),
         .LPCIPJNEPGJ = fd(6, 2578, .{ .Varint = .Simple }),
         .GHMEHJEFLKD = fd(15, null, .{ .List = .{ .SubMessage = {} } }),
     };
@@ -29176,14 +29176,14 @@ pub const JBJOGGLJEME = struct {
 
 pub const GBAIJPJEEDE = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: i32 = 0,
+    buddy_id: i32 = 0,
     FPJKKPMPGGM: ArrayList(i32),
     AAAEHFILPIL: ?AKJKJLBBPKG = null,
     DAIBNPNLJPE: bool = false,
     BDDCBKMMIPG: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, null, .{ .Varint = .Simple }),
         .FPJKKPMPGGM = fd(2, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .AAAEHFILPIL = fd(3, null, .{ .SubMessage = {} }),
         .DAIBNPNLJPE = fd(4, null, .{ .Varint = .Simple }),
@@ -32907,7 +32907,7 @@ pub const NJLHNGIEDEE = struct {
 pub const DungeonInfo = struct {
     pub const CmdId = 0;
     CPALALBHGKA: ?NJGCPKPBAEJ = null,
-    NCKPDLIHEDD: ?ACAKCLMPIJI = null,
+    buddy: ?BuddyUnitInfo = null,
     FGCMGFIDIAG: ArrayList(JKHDNJEOINK),
     avatar_list: ArrayList(AvatarUnitInfo),
     PFLCNNIHKGL: ?AANHHMAHMJC = null,
@@ -32933,7 +32933,7 @@ pub const DungeonInfo = struct {
     EBLAPJEHCHE: ArrayList(u32),
     GFDAPIBJFAI: u32 = 0,
     HLMCBIGLHAC: bool = false,
-    NAAIIFJECCA: ArrayList(ACAKCLMPIJI),
+    buddy_list: ArrayList(BuddyUnitInfo),
     PNBHALLCBGK: ArrayList(u32),
     MOMDLLBBOHF: ?KJEHMBDMGDJ = null,
     EKKHNLLNBBK: ArrayList(FKMKNPMPEGL),
@@ -32953,7 +32953,7 @@ pub const DungeonInfo = struct {
 
     pub const _desc_table = .{
         .CPALALBHGKA = fd(1, null, .{ .SubMessage = {} }),
-        .NCKPDLIHEDD = fd(2, null, .{ .SubMessage = {} }),
+        .buddy = fd(2, null, .{ .SubMessage = {} }),
         .FGCMGFIDIAG = fd(3, null, .{ .List = .{ .SubMessage = {} } }),
         .avatar_list = fd(4, null, .{ .List = .{ .SubMessage = {} } }),
         .PFLCNNIHKGL = fd(5, null, .{ .SubMessage = {} }),
@@ -32979,7 +32979,7 @@ pub const DungeonInfo = struct {
         .EBLAPJEHCHE = fd(395, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .GFDAPIBJFAI = fd(462, 3007, .{ .Varint = .Simple }),
         .HLMCBIGLHAC = fd(534, null, .{ .Varint = .Simple }),
-        .NAAIIFJECCA = fd(575, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(575, null, .{ .List = .{ .SubMessage = {} } }),
         .PNBHALLCBGK = fd(585, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .MOMDLLBBOHF = fd(593, null, .{ .SubMessage = {} }),
         .EKKHNLLNBBK = fd(610, null, .{ .List = .{ .SubMessage = {} } }),
@@ -33884,12 +33884,12 @@ pub const IFCHGHKNEHP = struct {
 pub const FJJJBGGIGKF = struct {
     pub const CmdId = 0;
     CMDMCGIAJPH: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     GCABOLHPKBG: u32 = 0,
 
     pub const _desc_table = .{
         .CMDMCGIAJPH = fd(3, 11064, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(5, 15753, .{ .Varint = .Simple }),
+        .buddy_id = fd(5, 15753, .{ .Varint = .Simple }),
         .GCABOLHPKBG = fd(9, 2487, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -36119,12 +36119,12 @@ pub const OONODMBHABG = struct {
     pub const CmdId = 3841;
     lock: bool = false,
     CEAGJLNBLOA: ArrayList(FJKKAJAAMMI),
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .lock = fd(7, null, .{ .Varint = .Simple }),
         .CEAGJLNBLOA = fd(11, null, .{ .List = .{ .SubMessage = {} } }),
-        .HKAPKGOMNJG = fd(12, 11006, .{ .Varint = .Simple }),
+        .buddy_id = fd(12, 11006, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -39324,7 +39324,7 @@ pub const StartHollowQuestCsReq = struct {
     pub const CmdId = 3724;
     AKOPGMLBFLI: u32 = 0,
     IPJKFNJKCPD: ManagedString = .Empty,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     MLGGJEMBBOM: bool = false,
     DPMPBDDFKBO: ArrayList(u32),
     ALFIEAJEHKL: ArrayList(u32),
@@ -39345,7 +39345,7 @@ pub const StartHollowQuestCsReq = struct {
     pub const _desc_table = .{
         .AKOPGMLBFLI = fd(1, 11639, .{ .Varint = .Simple }),
         .IPJKFNJKCPD = fd(2, null, .String),
-        .HKAPKGOMNJG = fd(3, 4414, .{ .Varint = .Simple }),
+        .buddy_id = fd(3, 4414, .{ .Varint = .Simple }),
         .MLGGJEMBBOM = fd(4, null, .{ .Varint = .Simple }),
         .DPMPBDDFKBO = fd(5, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .ALFIEAJEHKL = fd(6, null, .{ .PackedList = .{ .Varint = .Simple } }),
@@ -43526,11 +43526,11 @@ pub const CMDMKALDBDC = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const PAHHHGNIJHB = struct {
+pub const BuddyInfo = struct {
     pub const CmdId = 0;
     GOENNOJMPOO: u32 = 0,
     IMMLFNBMNKO: ArrayList(OCPFHMDMMLK),
-    skill_type_level: ArrayList(KDENIAFCGMD),
+    skill_type_level: ArrayList(BuddySkillLevel),
     is_favorite: bool = false,
     star: u32 = 0,
     taken_rank_up_reward_list: ArrayList(u32),
@@ -45298,12 +45298,12 @@ pub const ANNIPPJDCFD = struct {
     pub const CmdId = 4419;
     CHCEBGCCPDB: u32 = 0,
     DAAJOKCFLND: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .CHCEBGCCPDB = fd(5, 6668, .{ .Varint = .Simple }),
         .DAAJOKCFLND = fd(7, 1096, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(13, 1413, .{ .Varint = .Simple }),
+        .buddy_id = fd(13, 1413, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -46836,14 +46836,14 @@ pub const StartTrainingQuestCsReq = struct {
     avatar_id_list: ArrayList(u32),
     EMIPODODBFP: u32 = 0,
     quest_id: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .KGHEAJOPAHJ = fd(3, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .avatar_id_list = fd(6, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .EMIPODODBFP = fd(7, 6608, .{ .Varint = .Simple }),
         .quest_id = fd(12, 12462, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(15, 6999, .{ .Varint = .Simple }),
+        .buddy_id = fd(15, 6999, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -47660,12 +47660,12 @@ pub const KHKJKEODIHL = struct {
     pub const CmdId = 265;
     DAAJOKCFLND: u32 = 0,
     BGNPIMEELKL: ?DIDNFELKMKL = null,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .DAAJOKCFLND = fd(1, 13828, .{ .Varint = .Simple }),
         .BGNPIMEELKL = fd(4, null, .{ .SubMessage = {} }),
-        .HKAPKGOMNJG = fd(10, 13204, .{ .Varint = .Simple }),
+        .buddy_id = fd(10, 13204, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -51604,10 +51604,10 @@ pub const FAAOPCPBPIJ = struct {
 
 pub const DJAABKGLLEF = struct {
     pub const CmdId = 2159;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(10, 4465, .{ .Varint = .Simple }),
+        .buddy_id = fd(10, 4465, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -53793,14 +53793,14 @@ pub const FCCIHDIFNJJ = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const AKHCKDFPFGN = struct {
+pub const GetBuddyDataScRsp = struct {
     pub const CmdId = 7427;
     JNACANHEDOA: u32 = 0,
     ALPNHHEJLCB: ArrayList(u32),
     DCLDEKODKPD: u32 = 0,
     retcode: i32 = 0,
     KFPOKKAFLCD: ArrayList(u32),
-    NAAIIFJECCA: ArrayList(PAHHHGNIJHB),
+    buddy_list: ArrayList(BuddyInfo),
 
     pub const _desc_table = .{
         .JNACANHEDOA = fd(2, 5969, .{ .Varint = .Simple }),
@@ -53808,7 +53808,7 @@ pub const AKHCKDFPFGN = struct {
         .DCLDEKODKPD = fd(7, 3761, .{ .Varint = .Simple }),
         .retcode = fd(9, 1731, .{ .Varint = .Simple }),
         .KFPOKKAFLCD = fd(10, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .NAAIIFJECCA = fd(12, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(12, null, .{ .List = .{ .SubMessage = {} } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -54568,7 +54568,7 @@ pub const JBMNIKDNDPP = struct {
 pub const PHHAIELPMGG = struct {
     pub const CmdId = 0;
     IKFABDJOOAO: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     NIPKCNPGIFF: bool = false,
     JICOIIDHKEF: ManagedString = .Empty,
     EMGFNCBNOPK: ?BOJECAALHAM = null,
@@ -54576,7 +54576,7 @@ pub const PHHAIELPMGG = struct {
 
     pub const _desc_table = .{
         .IKFABDJOOAO = fd(1, null, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(2, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(2, null, .{ .Varint = .Simple }),
         .NIPKCNPGIFF = fd(3, null, .{ .Varint = .Simple }),
         .JICOIIDHKEF = fd(4, null, .Bytes),
         .EMGFNCBNOPK = fd(5, null, .{ .SubMessage = {} }),
@@ -56179,7 +56179,7 @@ pub const CIHPAIGHHHM = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const KDENIAFCGMD = struct {
+pub const BuddySkillLevel = struct {
     pub const CmdId = 0;
     skill_type: u32 = 0,
     level: u32 = 0,
@@ -57667,21 +57667,21 @@ pub const HEJOOKCGHJJ = struct {
 
 pub const StartHadalZoneBattleCsReq = struct {
     pub const CmdId = 1403;
-    FBKCMDAKHFE: u32 = 0,
+    second_room_buddy_id: u32 = 0,
     layer_index: u32 = 0,
     first_room_avatar_id_list: ArrayList(u32),
     zone_id: u32 = 0,
-    EMCAAMPPEHF: u32 = 0,
+    first_room_buddy_id: u32 = 0,
     second_room_avatar_id_list: ArrayList(u32),
     FGCOMPIBLNJ: bool = false,
     layer_item_id: u32 = 0,
 
     pub const _desc_table = .{
-        .FBKCMDAKHFE = fd(1, 3311, .{ .Varint = .Simple }),
+        .second_room_buddy_id = fd(1, 3311, .{ .Varint = .Simple }),
         .layer_index = fd(3, 9533, .{ .Varint = .Simple }),
         .first_room_avatar_id_list = fd(4, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .zone_id = fd(5, 7563, .{ .Varint = .Simple }),
-        .EMCAAMPPEHF = fd(7, 1710, .{ .Varint = .Simple }),
+        .first_room_buddy_id = fd(7, 1710, .{ .Varint = .Simple }),
         .second_room_avatar_id_list = fd(8, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .FGCOMPIBLNJ = fd(10, null, .{ .Varint = .Simple }),
         .layer_item_id = fd(11, 7141, .{ .Varint = .Simple }),
@@ -58760,14 +58760,14 @@ pub const LEJCDGBHJBG = struct {
     FHFOJHCNOJC: u32 = 0,
     MBIKBELAMDB: u32 = 0,
     GOCJINMIGFI: bool = false,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     IKFABDJOOAO: u32 = 0,
 
     pub const _desc_table = .{
         .FHFOJHCNOJC = fd(9, 11891, .{ .Varint = .Simple }),
         .MBIKBELAMDB = fd(10, 10008, .{ .Varint = .Simple }),
         .GOCJINMIGFI = fd(11, null, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(12, 448, .{ .Varint = .Simple }),
+        .buddy_id = fd(12, 448, .{ .Varint = .Simple }),
         .IKFABDJOOAO = fd(15, 8559, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -59341,14 +59341,14 @@ pub const MDHFBJAMEHB = struct {
     pub usingnamespace protobuf.MessageMixins(@This());
 };
 
-pub const ACAKCLMPIJI = struct {
+pub const BuddyUnitInfo = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: u32 = 0,
-    properties: ArrayList(ACAKCLMPIJI.PropertiesEntry),
-    type: DJNFNLBBIEG = @enumFromInt(0),
+    buddy_id: u32 = 0,
+    properties: ArrayList(BuddyUnitInfo.PropertiesEntry),
+    type: BuddyTeamType = @enumFromInt(0),
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, null, .{ .Varint = .Simple }),
         .properties = fd(2, null, .{ .List = .{ .SubMessage = {} } }),
         .type = fd(3, null, .{ .Varint = .Simple }),
     };
@@ -60403,7 +60403,7 @@ pub const PlayerSyncScNotify = struct {
     item: ?ItemSync = null,
     avatar: ?AvatarSync = null,
     IDENGKPMJIA: ?PCKIHKLBIHJ = null,
-    NCKPDLIHEDD: ?PGBFANHPGHH = null,
+    buddy: ?PGBFANHPGHH = null,
     misc: ?MiscSync = null,
     tips: ?DLHEMMFOKCO = null,
     EOLPBJIBBBI: ?DNJILJOGHJO = null,
@@ -60459,7 +60459,7 @@ pub const PlayerSyncScNotify = struct {
         .item = fd(1, null, .{ .SubMessage = {} }),
         .avatar = fd(2, null, .{ .SubMessage = {} }),
         .IDENGKPMJIA = fd(3, null, .{ .SubMessage = {} }),
-        .NCKPDLIHEDD = fd(4, null, .{ .SubMessage = {} }),
+        .buddy = fd(4, null, .{ .SubMessage = {} }),
         .misc = fd(5, null, .{ .SubMessage = {} }),
         .tips = fd(6, null, .{ .SubMessage = {} }),
         .EOLPBJIBBBI = fd(7, null, .{ .SubMessage = {} }),
@@ -60749,7 +60749,7 @@ pub const IELNEMEEGGL = struct {
 
 pub const ACJNBKMDMPH = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: i32 = 0,
+    buddy_id: i32 = 0,
     KGCHAIAOMCO: i64 = 0,
     GCOGLCKFIEG: i32 = 0,
     GKPBCDIFHHH: i32 = 0,
@@ -60761,7 +60761,7 @@ pub const ACJNBKMDMPH = struct {
     LIHHFOBOBOG: i32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, null, .{ .Varint = .Simple }),
         .KGCHAIAOMCO = fd(2, null, .{ .Varint = .Simple }),
         .GCOGLCKFIEG = fd(3, null, .{ .Varint = .Simple }),
         .GKPBCDIFHHH = fd(4, null, .{ .Varint = .Simple }),
@@ -61391,13 +61391,13 @@ pub const LODIOFLDEPN = struct {
     avatar_id_list: ArrayList(u32),
     HMCMDCNHGME: ArrayList(u32),
     quest_id: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .avatar_id_list = fd(7, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .HMCMDCNHGME = fd(8, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .quest_id = fd(9, 2489, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(15, 11778, .{ .Varint = .Simple }),
+        .buddy_id = fd(15, 11778, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -62395,11 +62395,11 @@ pub const AbyssGetDataCsReq = struct {
 
 pub const LFMLIBLGBJF = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: ?BLMGIPAPJJH = null,
+    buddy_id: ?BLMGIPAPJJH = null,
     MGIIAMNPHBM: PIHIMAIAAHM = @enumFromInt(0),
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, null, .{ .SubMessage = {} }),
+        .buddy_id = fd(1, null, .{ .SubMessage = {} }),
         .MGIIAMNPHBM = fd(2, null, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -62577,7 +62577,7 @@ pub const JDNMGELIODN = struct {
 
 pub const LKHMHCKFNEL = struct {
     pub const CmdId = 1538;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     quest_id: u32 = 0,
     avatar_id_list: ArrayList(u32),
     HMCMDCNHGME: ArrayList(u32),
@@ -62586,7 +62586,7 @@ pub const LKHMHCKFNEL = struct {
     EMIPODODBFP: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, 13048, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, 13048, .{ .Varint = .Simple }),
         .quest_id = fd(4, 5791, .{ .Varint = .Simple }),
         .avatar_id_list = fd(5, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .HMCMDCNHGME = fd(7, null, .{ .PackedList = .{ .Varint = .Simple } }),
@@ -64564,7 +64564,7 @@ pub const DungeonPackageInfo = struct {
     pub const CmdId = 0;
     weapon_list: ArrayList(WeaponInfo),
     NAMAEGNJPDB: ArrayList(u32),
-    NAAIIFJECCA: ArrayList(PAHHHGNIJHB),
+    buddy_list: ArrayList(BuddyInfo),
     KMLHPDFMCDC: ArrayList(BBIHGCFCEFJ),
     BGHNGMGECMC: u32 = 0,
     DGEKBFAABDJ: ArrayList(EIGKIGLEONB),
@@ -64578,13 +64578,13 @@ pub const DungeonPackageInfo = struct {
     NLKFGJBNFPO: ArrayList(AKDCIBFPBJM),
     IGKHNGMLLHM: u32 = 0,
     NKMNGKOACHN: ArrayList(DHECFLAOEHE),
-    FBPNFJCPCND: ?ACAKCLMPIJI = null,
-    CMKMAOCEKKH: ?PAHHHGNIJHB = null,
+    FBPNFJCPCND: ?BuddyUnitInfo = null,
+    CMKMAOCEKKH: ?BuddyInfo = null,
 
     pub const _desc_table = .{
         .weapon_list = fd(1, null, .{ .List = .{ .SubMessage = {} } }),
         .NAMAEGNJPDB = fd(2, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .NAAIIFJECCA = fd(3, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(3, null, .{ .List = .{ .SubMessage = {} } }),
         .KMLHPDFMCDC = fd(4, null, .{ .List = .{ .SubMessage = {} } }),
         .BGHNGMGECMC = fd(5, 2709, .{ .Varint = .Simple }),
         .DGEKBFAABDJ = fd(6, null, .{ .List = .{ .SubMessage = {} } }),
@@ -64805,10 +64805,10 @@ pub const DKBDAMPPKEE = struct {
 
 pub const PHLACHFJGMK = struct {
     pub const CmdId = 0;
-    NAAIIFJECCA: ArrayList(HNHGDBINCPC),
+    buddy_list: ArrayList(HNHGDBINCPC),
 
     pub const _desc_table = .{
-        .NAAIIFJECCA = fd(6, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(6, null, .{ .List = .{ .SubMessage = {} } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -67304,7 +67304,7 @@ pub const DNOPLGMNEBK = struct {
     NJPEDNHFJMB: u32 = 0,
     PDFIEJDPEGH: i64 = 0,
     layer_item_id: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     BCODNDGGIKK: u32 = 0,
     IILJKLBDPOP: u32 = 0,
     JNGJODEPAKC: u32 = 0,
@@ -67330,7 +67330,7 @@ pub const DNOPLGMNEBK = struct {
         .NJPEDNHFJMB = fd(9, null, .{ .Varint = .Simple }),
         .PDFIEJDPEGH = fd(10, null, .{ .Varint = .Simple }),
         .layer_item_id = fd(11, null, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(12, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(12, null, .{ .Varint = .Simple }),
         .BCODNDGGIKK = fd(13, null, .{ .Varint = .Simple }),
         .IILJKLBDPOP = fd(14, null, .{ .Varint = .Simple }),
         .JNGJODEPAKC = fd(15, null, .{ .Varint = .Simple }),
@@ -69772,11 +69772,11 @@ pub const MCNLFEKNCLL = struct {
 pub const ELBEFEDBAFG = struct {
     pub const CmdId = 8769;
     is_favorite: bool = false,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .is_favorite = fd(1, null, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(12, 11038, .{ .Varint = .Simple }),
+        .buddy_id = fd(12, 11038, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -69985,7 +69985,7 @@ pub const LBJDPKNNCAL = struct {
     pub const CmdId = 4370;
     JMNFHHFBNIM: u32 = 0,
     BHAJBBPNKGP: u32 = 0,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     DLIDBFLGNHB: ?DFCLJBALPKD = null,
     avatar_id_list: ArrayList(u32),
     FBEOBNOGBHF: u32 = 0,
@@ -69995,7 +69995,7 @@ pub const LBJDPKNNCAL = struct {
     pub const _desc_table = .{
         .JMNFHHFBNIM = fd(1, 4018, .{ .Varint = .Simple }),
         .BHAJBBPNKGP = fd(8, 8193, .{ .Varint = .Simple }),
-        .HKAPKGOMNJG = fd(9, 4085, .{ .Varint = .Simple }),
+        .buddy_id = fd(9, 4085, .{ .Varint = .Simple }),
         .DLIDBFLGNHB = fd(10, null, .{ .SubMessage = {} }),
         .avatar_id_list = fd(11, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .FBEOBNOGBHF = fd(12, 9430, .{ .Varint = .Simple }),
@@ -70718,22 +70718,22 @@ pub const HadalZoneSceneData = struct {
     HKEKGNNKBEA: u32 = 0,
     layer_index: u32 = 0,
     first_room_avatar_id_list: ArrayList(u32),
-    EMCAAMPPEHF: u32 = 0,
+    first_room_buddy_id: u32 = 0,
     scene_perform: ?ScenePerformInfo = null,
     layer_item_id: u32 = 0,
     zone_id: u32 = 0,
-    FBKCMDAKHFE: u32 = 0,
+    second_room_buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .second_room_avatar_id_list = fd(1, null, .{ .PackedList = .{ .Varint = .Simple } }),
         .HKEKGNNKBEA = fd(3, 14695, .{ .Varint = .Simple }),
         .layer_index = fd(5, 16254, .{ .Varint = .Simple }),
         .first_room_avatar_id_list = fd(7, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .EMCAAMPPEHF = fd(9, 9802, .{ .Varint = .Simple }),
+        .first_room_buddy_id = fd(9, 9802, .{ .Varint = .Simple }),
         .scene_perform = fd(11, null, .{ .SubMessage = {} }),
         .layer_item_id = fd(12, 156, .{ .Varint = .Simple }),
         .zone_id = fd(14, 7025, .{ .Varint = .Simple }),
-        .FBKCMDAKHFE = fd(15, 12709, .{ .Varint = .Simple }),
+        .second_room_buddy_id = fd(15, 12709, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -71892,10 +71892,10 @@ pub const BKPHGDGKPMA = struct {
 
 pub const EEJKHIJJGLA = struct {
     pub const CmdId = 550;
-    NAAIIFJECCA: ArrayList(CBBIHHGFEHP),
+    buddy_list: ArrayList(CBBIHHGFEHP),
 
     pub const _desc_table = .{
-        .NAAIIFJECCA = fd(6, null, .{ .List = .{ .SubMessage = {} } }),
+        .buddy_list = fd(6, null, .{ .List = .{ .SubMessage = {} } }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -72257,12 +72257,12 @@ pub const JPKCIIGODBH = struct {
     pub const CmdId = 9971;
     DAAJOKCFLND: u32 = 0,
     JOEFDFFLONB: ManagedString = .Empty,
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
 
     pub const _desc_table = .{
         .DAAJOKCFLND = fd(4, 4394, .{ .Varint = .Simple }),
         .JOEFDFFLONB = fd(9, null, .String),
-        .HKAPKGOMNJG = fd(14, 12438, .{ .Varint = .Simple }),
+        .buddy_id = fd(14, 12438, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
         return @This().CmdId;
@@ -73006,11 +73006,11 @@ pub const LIMHKKFKBID = struct {
 
 pub const NLDCDDJENPL = struct {
     pub const CmdId = 3741;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     KCDMOMJKPJE: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(8, 12508, .{ .Varint = .Simple }),
+        .buddy_id = fd(8, 12508, .{ .Varint = .Simple }),
         .KCDMOMJKPJE = fd(11, 364, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -81140,13 +81140,13 @@ pub const BLHAMACHCKN = struct {
 
 pub const MIBILPNNDJK = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     HEKOOJCIJAI: CHGECMEGGEM = @enumFromInt(0),
     EKLOKFMBICM: AIDNIJJOGDH = @enumFromInt(0),
-    DNIEPEJEJLC: ?ACAKCLMPIJI = null,
+    DNIEPEJEJLC: ?BuddyUnitInfo = null,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, null, .{ .Varint = .Simple }),
         .HEKOOJCIJAI = fd(2, null, .{ .Varint = .Simple }),
         .EKLOKFMBICM = fd(3, null, .{ .Varint = .Simple }),
         .DNIEPEJEJLC = fd(4, null, .{ .SubMessage = {} }),
@@ -83964,7 +83964,7 @@ pub const HIEODDIGEHM = struct {
 
 pub const KECAGEGOIEM = struct {
     pub const CmdId = 0;
-    HKAPKGOMNJG: i32 = 0,
+    buddy_id: i32 = 0,
     level: i32 = 0,
     LEJPBMPJJLL: i32 = 0,
     LICEEDNHPJA: i32 = 0,
@@ -83972,7 +83972,7 @@ pub const KECAGEGOIEM = struct {
     KOJHAPLGBEF: i32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(1, null, .{ .Varint = .Simple }),
+        .buddy_id = fd(1, null, .{ .Varint = .Simple }),
         .level = fd(2, null, .{ .Varint = .Simple }),
         .LEJPBMPJJLL = fd(3, null, .{ .Varint = .Simple }),
         .LICEEDNHPJA = fd(4, null, .{ .Varint = .Simple }),
@@ -84118,11 +84118,11 @@ pub const PHMLDDOHELM = struct {
 
 pub const AGDOBJELMIK = struct {
     pub const CmdId = 8193;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     retcode: i32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(5, 12838, .{ .Varint = .Simple }),
+        .buddy_id = fd(5, 12838, .{ .Varint = .Simple }),
         .retcode = fd(13, 8769, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -84171,8 +84171,8 @@ pub const MDDNOGPNGDF = struct {
 pub const OGPNBHIABCB = struct {
     pub const CmdId = 7006;
     KDGBJLHCMGD: u32 = 0,
-    CMKMAOCEKKH: ?PAHHHGNIJHB = null,
-    FBPNFJCPCND: ?ACAKCLMPIJI = null,
+    CMKMAOCEKKH: ?BuddyInfo = null,
+    FBPNFJCPCND: ?BuddyUnitInfo = null,
     OPGFFLDDDHG: u32 = 0,
 
     pub const _desc_table = .{
@@ -84578,12 +84578,12 @@ pub const CMDEONALABP = struct {
 
 pub const GELBLPEBOMD = struct {
     pub const CmdId = 3650;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     BHFMBKDOFGA: bool = false,
     JBHHDIAKICN: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(6, 1783, .{ .Varint = .Simple }),
+        .buddy_id = fd(6, 1783, .{ .Varint = .Simple }),
         .BHFMBKDOFGA = fd(10, null, .{ .Varint = .Simple }),
         .JBHHDIAKICN = fd(12, 2497, .{ .Varint = .Simple }),
     };
@@ -86798,11 +86798,11 @@ pub const ODDAFLLNEML = struct {
 
 pub const MMDHCCOOALA = struct {
     pub const CmdId = 5978;
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     DAAJOKCFLND: u32 = 0,
 
     pub const _desc_table = .{
-        .HKAPKGOMNJG = fd(6, 7718, .{ .Varint = .Simple }),
+        .buddy_id = fd(6, 7718, .{ .Varint = .Simple }),
         .DAAJOKCFLND = fd(15, 15675, .{ .Varint = .Simple }),
     };
     pub fn getCmdId(_: *const @This()) u16 {
@@ -86817,7 +86817,7 @@ pub const JOPNJFKDLFN = struct {
     KDCBMJBMNCK: bool = false,
     FGCOMPIBLNJ: bool = false,
     avatar_id_list: ArrayList(u32),
-    HKAPKGOMNJG: u32 = 0,
+    buddy_id: u32 = 0,
     quest_id: u32 = 0,
     HMCMDCNHGME: ArrayList(u32),
 
@@ -86825,7 +86825,7 @@ pub const JOPNJFKDLFN = struct {
         .KDCBMJBMNCK = fd(1, null, .{ .Varint = .Simple }),
         .FGCOMPIBLNJ = fd(3, null, .{ .Varint = .Simple }),
         .avatar_id_list = fd(4, null, .{ .PackedList = .{ .Varint = .Simple } }),
-        .HKAPKGOMNJG = fd(8, 15085, .{ .Varint = .Simple }),
+        .buddy_id = fd(8, 15085, .{ .Varint = .Simple }),
         .quest_id = fd(12, 13444, .{ .Varint = .Simple }),
         .HMCMDCNHGME = fd(13, null, .{ .PackedList = .{ .Varint = .Simple } }),
     };
