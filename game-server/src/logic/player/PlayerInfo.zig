@@ -57,7 +57,7 @@ pub fn init(uid: u32, allocator: Allocator) !Self {
         .nick_name = .init("ReversedRooms", null),
         .avatar_id = .init(2011),
         .player_avatar_id = .init(2011),
-        .control_guise_avatar_id = .init(1301),
+        .control_guise_avatar_id = .init(1051),
         .item_data = .init(allocator),
         .switch_data = .init(allocator),
         .misc_data = .init(allocator),
@@ -114,10 +114,12 @@ pub fn addItemsFromSettings(self: *Self, settings: *const GameplaySettings, temp
             avatar.unlocked_talent_num = override.unlocked_talent_num;
 
             if (override.weapon) |config| {
-                avatar.cur_weapon_uid = self.addWeaponByConfig(config, templates) catch |err| blk: {
+                const weapon_uid = self.addWeaponByConfig(config, templates) catch |err| blk: {
                     if (err == error.InvalidConfig) break :blk 0;
                     return err;
                 };
+
+                self.item_data.getItemPtrAs(Avatar, override.id).?.cur_weapon_uid = weapon_uid;
             }
 
             for (override.equipment) |entry| {
@@ -131,10 +133,12 @@ pub fn addItemsFromSettings(self: *Self, settings: *const GameplaySettings, temp
                     continue;
                 }
 
-                avatar.dressed_equip[slot] = self.addEquipmentByConfig(config, templates) catch |err| blk: {
+                const equip_uid = self.addEquipmentByConfig(config, templates) catch |err| blk: {
                     if (err == error.InvalidConfig) break :blk null;
                     return err;
                 };
+
+                self.item_data.getItemPtrAs(Avatar, override.id).?.dressed_equip[slot] = equip_uid;
             }
         } else {
             std.log.err("invalid avatar id {} in GameplaySettings", .{override.id});

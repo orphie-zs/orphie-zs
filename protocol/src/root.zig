@@ -10,7 +10,7 @@ pub const protobuf = @import("protobuf");
 const std = @import("std");
 
 pub const DummyMessage = struct {
-    pub const CmdId = 938;
+    pub const CmdId = 8125;
 
     pub const _desc_table = .{};
 

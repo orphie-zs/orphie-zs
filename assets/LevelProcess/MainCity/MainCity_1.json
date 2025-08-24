@@ -1,6 +1,6 @@
 {
     "id": 1,
-    "default_section_id": 2,
+    "default_section_id": 1,
     "sections": {
         "1": {
             "unity_scene_path": "MainCity_Street",

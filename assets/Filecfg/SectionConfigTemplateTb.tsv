@@ -1,26 +1,28 @@
-name	section_name	LPCCMGGCGGI	LONHOKDFBCK	section_id	LLJGOKBLPJC	HBBJMKJCCML	default_transform	NNAOCIMGJLF
-"MainCity_Street"	"Photo_SectionName_01"	"SectionName_Street"	TRUE	1	3	"Street_PlayerPos_Default"	"Street_PlayerPos_Default"	4
-"MainCity_Workshop"	"Photo_SectionName_02"	"SectionName_Workshop"	TRUE	2	3	"Workshop_PlayerPos_Pos2"	"Workshop_PlayerPos_Default"	4
-"MainCity_Garage"	"Photo_SectionName_03"	"SectionName_Garage"	TRUE	3	3	"Garage_PlayerPos_Default"	"Garage_PlayerPos_Default"	2
-"MainCity_ConstructionSite"	"Photo_SectionName_04"	"SectionName_ConstructionSite"	TRUE	4	3	"ConstructionSite_PlayerPos_Default"	"ConstructionSite_PlayerPos_Default"	3
-"MainCity_SkyScraper"	"Photo_SectionName_05"	"SectionName_SkyScraper"	TRUE	5	3	"SkyScraper_PlayerPos_Default"	"SkyScraper_PlayerPos_Default"	3
-"MainCity_FortuneSquare"	"Photo_SectionName_101"	"SectionName_FortuneSquare"	TRUE	101	3	"FortuneSquare_PlayerPos_Default"	"FortuneSquare_PlayerPos_Default"	4
-"MainCity_FortuneNEPS"	"Photo_SectionName_102"	"SectionName_FortuneNEPS"	TRUE	102	3	"FortuneNEPS_PlayerPos_Default"	"FortuneNEPS_PlayerPos_Default"	3
-"MainCity_FortuneHIA"	"Photo_SectionName_103"	"SectionName_FortuneHIA"	TRUE	103	3	"FortuneHIA_PlayerPos_Default"	"FortuneHIA_PlayerPos_Default"	3
-"Maincity_OuterRing"	"Photo_SectionName_104"	"SectionName_OuterRing"	TRUE	104	3	"OuterRing_PlayerPos_Default"	"OuterRing_PlayerPos_Default"	3
-"Maincity_Hand"	"Photo_SectionName_105"	"SectionName_Hand"	TRUE	105	3	"Hand_PlayerPos_Default"	"Hand_PlayerPos_Default"	3
-"Maincity_Port"	"Photo_SectionName_106"	"SectionName_Port"	TRUE	106	3	"Port_PlayerPos_Default"	"Port_PlayerPos_Default"	3
-"Maincity_ReverbArena"	"Photo_SectionName_107"	"SectionName_ReverbArena"	TRUE	107	3	"ReverbArena_PlayerPos_Default"	"ReverbArena_PlayerPos_Default"	3
-"Maincity_Concert"	"Photo_SectionName_108"	"SectionName_Concert"	TRUE	108	3	"Concert_PlayerPos_Default"	"Concert_PlayerPos_Default"	3
-"Maincity_Zero"	"Photo_SectionName_151"	"SectionName_Zero"	TRUE	151	3	"Zero_PlayerPos_Default"	"Zero_PlayerPos_Default"	3
-"Stage_SkyScraper_JaneOVA"	"Photo_SectionName_152"	"SectionName_SkyScraper"	TRUE	152	3	"SkyScraper_JaneOVA_PlayerPos_Default"	"SkyScraper_JaneOVA_PlayerPos_Default"	1
-"Maincity_Subway_Street"	"Photo_SectionName_153"	"SectionName_Subway"	TRUE	153	3	"Subway_PlayerPos_Default"	"Subway_PlayerPos_Default"	1
-"Maincity_Subway_FortuneSquare"	"Photo_SectionName_154"	"SectionName_Subway"	TRUE	154	3	"SubwayFortuneSquare_PlayerPos_Default"	"SubwayFortuneSquare_PlayerPos_Default"	1
-"Maincity_HandOffice"	"Photo_SectionName_155"	"SectionName_HandOffice"	TRUE	155	3	"HandOffice_PlayerPos_Default"	"HandOffice_PlayerPos_Default"	1
-"Stage_VR_YanagiOVA_03"	"Photo_SectionName_156"	"SectionName_VRHIA"	TRUE	156	3	"VRHIA_PlayerPos_Default"	"VRHIA_PlayerPos_Default"	2
-"Stage_VR_YanagiOVA_04"	"Photo_SectionName_157"	"SectionName_VRFortune"	TRUE	157	3	"VRFortune_PlayerPos_Default"	"VRFortune_PlayerPos_Default"	3
-"Stage_2FMall"	"Photo_SectionName_158"	"SectionName_Fortune2FMall"	TRUE	158	3	"Fortune2FMall_PlayerPos_Default"	"Fortune2FMall_PlayerPos_Default"	1
-"MainCity_WaifeiHeights"	"Photo_SectionName_201"	"SectionName_WaifeiHeights"	TRUE	201	3	"WaifeiHeights_PlayerPos_2F_Default"	"WaifeiHeights_PlayerPos_2F_Default"	4
-"MainCity_Beach"	"Photo_SectionName_202"	"SectionName_Beach"	TRUE	202	3	"Beach_PlayerPos_Default"	"Beach_PlayerPos_Default"	4
-"Stage_Story_Seed_2"	"Photo_SectionName_251"	"SectionName_Seed_2"	TRUE	251	3	"Seed2_PlayerPos_Default"	"Seed2_PlayerPos_Default"	2
-""	""	""	TRUE	301	3	""	""	4
+GNEBADABOBA	default_transform	section_name	ACLNOIEOALO	photo_section_name	DMLDBLIDECL	IGIKHNILHAA	section_id	name	APGDLLPCHDI
+3	"Street_PlayerPos_Default"	"SectionName_Street"	4	"Photo_SectionName_01"	"Street_PlayerPos_Default"	0	1	"MainCity_Street"	TRUE
+3	"Workshop_PlayerPos_Default"	"SectionName_Workshop"	4	"Photo_SectionName_02"	"Workshop_PlayerPos_Pos2"	0	2	"MainCity_Workshop"	TRUE
+3	"Garage_PlayerPos_Default"	"SectionName_Garage"	2	"Photo_SectionName_03"	"Garage_PlayerPos_Default"	0	3	"MainCity_Garage"	TRUE
+3	"ConstructionSite_PlayerPos_Default"	"SectionName_ConstructionSite"	3	"Photo_SectionName_04"	"ConstructionSite_PlayerPos_Default"	0	4	"MainCity_ConstructionSite"	TRUE
+3	"SkyScraper_PlayerPos_Default"	"SectionName_SkyScraper"	3	"Photo_SectionName_05"	"SkyScraper_PlayerPos_Default"	0	5	"MainCity_SkyScraper"	TRUE
+3	"FortuneSquare_PlayerPos_Default"	"SectionName_FortuneSquare"	4	"Photo_SectionName_101"	"FortuneSquare_PlayerPos_Default"	0	101	"MainCity_FortuneSquare"	TRUE
+3	"FortuneNEPS_PlayerPos_Default"	"SectionName_FortuneNEPS"	3	"Photo_SectionName_102"	"FortuneNEPS_PlayerPos_Default"	0	102	"MainCity_FortuneNEPS"	TRUE
+3	"FortuneHIA_PlayerPos_Default"	"SectionName_FortuneHIA"	3	"Photo_SectionName_103"	"FortuneHIA_PlayerPos_Default"	0	103	"MainCity_FortuneHIA"	TRUE
+3	"OuterRing_PlayerPos_Default"	"SectionName_OuterRing"	3	"Photo_SectionName_104"	"OuterRing_PlayerPos_Default"	0	104	"Maincity_OuterRing"	TRUE
+3	"Hand_PlayerPos_Default"	"SectionName_Hand"	3	"Photo_SectionName_105"	"Hand_PlayerPos_Default"	0	105	"Maincity_Hand"	TRUE
+3	"Port_PlayerPos_Default"	"SectionName_Port"	3	"Photo_SectionName_106"	"Port_PlayerPos_Default"	0	106	"Maincity_Port"	TRUE
+3	"ReverbArena_PlayerPos_Default"	"SectionName_ReverbArena"	3	"Photo_SectionName_107"	"ReverbArena_PlayerPos_Default"	0	107	"Maincity_ReverbArena"	TRUE
+3	"Concert_PlayerPos_Default"	"SectionName_Concert"	3	"Photo_SectionName_108"	"Concert_PlayerPos_Default"	0	108	"Maincity_Concert"	TRUE
+3	"Zero_PlayerPos_Default"	"SectionName_Zero"	3	"Photo_SectionName_151"	"Zero_PlayerPos_Default"	0	151	"Maincity_Zero"	TRUE
+3	"SkyScraper_JaneOVA_PlayerPos_Default"	"SectionName_SkyScraper"	1	"Photo_SectionName_152"	"SkyScraper_JaneOVA_PlayerPos_Default"	0	152	"Stage_SkyScraper_JaneOVA"	TRUE
+3	"Subway_PlayerPos_Default"	"SectionName_Subway"	1	"Photo_SectionName_153"	"Subway_PlayerPos_Default"	0	153	"Maincity_Subway_Street"	TRUE
+3	"SubwayFortuneSquare_PlayerPos_Default"	"SectionName_Subway"	1	"Photo_SectionName_154"	"SubwayFortuneSquare_PlayerPos_Default"	0	154	"Maincity_Subway_FortuneSquare"	TRUE
+3	"HandOffice_PlayerPos_Default"	"SectionName_HandOffice"	1	"Photo_SectionName_155"	"HandOffice_PlayerPos_Default"	0	155	"Maincity_HandOffice"	TRUE
+3	"VRHIA_PlayerPos_Default"	"SectionName_VRHIA"	2	"Photo_SectionName_156"	"VRHIA_PlayerPos_Default"	0	156	"Stage_VR_YanagiOVA_03"	TRUE
+3	"VRFortune_PlayerPos_Default"	"SectionName_VRFortune"	3	"Photo_SectionName_157"	"VRFortune_PlayerPos_Default"	0	157	"Stage_VR_YanagiOVA_04"	TRUE
+3	"Fortune2FMall_PlayerPos_Default"	"SectionName_Fortune2FMall"	1	"Photo_SectionName_158"	"Fortune2FMall_PlayerPos_Default"	0	158	"Stage_2FMall"	TRUE
+3	"WaifeiHeights_PlayerPos_2F_Default"	"SectionName_WaifeiHeights"	4	"Photo_SectionName_201"	"WaifeiHeights_PlayerPos_2F_Default"	0	201	"MainCity_WaifeiHeights"	TRUE
+3	"Beach_PlayerPos_Default"	"SectionName_Beach"	4	"Photo_SectionName_202"	"Beach_PlayerPos_Default"	121202	202	"MainCity_Beach"	TRUE
+3	"Seed2_PlayerPos_Default"	"SectionName_Seed_2"	2	"Photo_SectionName_251"	"Seed2_PlayerPos_Default"	0	251	"Stage_Story_Seed_2"	TRUE
+3	"ConstructionSite_3_4_PlayerPos_Default"	"SectionName_ConstructionSite_3_4"	2	"Photo_SectionName_251"	"ConstructionSite_3_4_PlayerPos_Default"	0	252	"Stage_ConstructionSite_3_4"	TRUE
+3	"MonsterFantasy_1_PlayerPos_Default"	"SectionName_MonsterFantasy_1"	3	"Photo_SectionName_251"	"MonsterFantasy_1_PlayerPos_Default"	121601	253	"Stage_Story_MonsterFantasy_1"	TRUE
+3	""	""	4	""	""	0	301	""	TRUE

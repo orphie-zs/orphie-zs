@@ -160,6 +160,8 @@ inline fn EnumerateCmdIds(comptime T: type) type {
                     const Message = fn_info.params[1].type.?;
 
                     if (@hasDecl(Message, "CmdId")) {
+                        if (@field(Message, "CmdId") == protocol.DummyMessage.CmdId) continue;
+
                         fields = fields ++ .{std.builtin.Type.EnumField{
                             .name = @typeName(Message),
                             .value = @field(Message, "CmdId"),
@@ -194,6 +196,7 @@ inline fn handleMessage(context: *NetContext, comptime T: type, packet: *const N
                             const Message = fn_info.params[1].type.?;
 
                             if (@hasDecl(Message, "CmdId")) {
+                                if (@field(Message, "CmdId") == protocol.DummyMessage.CmdId) continue;
                                 const t_enum_value: CmdIds = @enumFromInt(@field(Message, "CmdId"));
                                 if (cmd_id == t_enum_value) {
                                     const req = try @field(Message, "decode")(packet.body, context.arena);
