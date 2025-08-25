@@ -1,5 +1,6 @@
 const protobuf = @import("protobuf_nap");
 const std = @import("std");
+const builtin = @import("builtin");
 
 var protobuf_compiler_step: ?*std.Build.Step = null;
 
@@ -9,10 +10,16 @@ pub fn build(b: *std.Build) void {
         .optimize = b.standardOptimizeOption(.{}),
     };
 
+    // in order to run protoc on host machine, host target should be passed to compile protoc-gen-zig
+    const host_target: std.Build.ResolvedTarget = .{
+        .query = .fromTarget(builtin.target),
+        .result = builtin.target,
+    };
+
     const protobuf_dep = b.dependency("protobuf_nap", opts);
 
     if (std.fs.cwd().access("protocol/nap.proto", .{})) {
-        const protoc_step = protobuf.RunProtocStep.create(b, protobuf_dep.builder, opts.target, .{
+        const protoc_step = protobuf.RunProtocStep.create(b, protobuf_dep.builder, host_target, .{
             .destination_directory = b.path("protocol/src"),
             .source_files = &.{
                 "protocol/nap.proto",
