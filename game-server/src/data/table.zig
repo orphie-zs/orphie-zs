@@ -8,7 +8,8 @@ pub fn TsvTable(comptime template_name: []const u8) type {
     const data: []const u8 = @embedFile(template_name);
 
     const header_len = std.mem.indexOfScalar(u8, data, '\n') orelse @compileError("no newline at the end of header in file " ++ template_name);
-    const header = data[0..header_len];
+    var header: []const u8 = data[0..header_len];
+    if (header[header.len - 1] == '\r') header.len -= 1;
 
     const payload = data[header_len + 1 .. data.len];
 
@@ -54,7 +55,11 @@ fn parseRows(comptime payload: []const u8, row_count: usize, field_count: usize)
     var rows_iter = std.mem.tokenizeScalar(u8, payload, '\n');
     for (0..row_count) |i| {
         var row: [field_count][]const u8 = undefined;
-        var row_iter = std.mem.tokenizeScalar(u8, rows_iter.next().?, '\t');
+
+        var row_contents = rows_iter.next().?;
+        if (row_contents[row_contents.len - 1] == '\r') row_contents.len -= 1;
+
+        var row_iter = std.mem.tokenizeScalar(u8, row_contents, '\t');
         for (0..field_count) |j| {
             row[j] = row_iter.next().?;
         }

@@ -53,7 +53,10 @@ pub fn parseFromSlice(comptime TB: type, slice: []const u8, allocator: std.mem.A
     const item_type = std.meta.Elem(@FieldType(TB, tb_items_field));
 
     const header_len = std.mem.indexOfScalar(u8, slice, '\n') orelse return error.MissingNewline;
-    if (!isHeaderValid(item_type, slice[0..header_len])) return error.InvalidHeader;
+    var header: []const u8 = slice[0..header_len];
+    if (header[header.len - 1] == '\r') header.len -= 1;
+
+    if (!isHeaderValid(item_type, header)) return error.InvalidHeader;
 
     const data = slice[header_len + 1 .. slice.len];
     const item_count = std.mem.count(u8, data, &.{'\n'});
@@ -64,7 +67,10 @@ pub fn parseFromSlice(comptime TB: type, slice: []const u8, allocator: std.mem.A
 
     for (0..item_count) |i| {
         const item = &output[i];
-        var values = std.mem.tokenizeScalar(u8, rows.next().?, '\t');
+        var row = rows.next().?;
+        if (row[row.len - 1] == '\r') row.len -= 1;
+
+        var values = std.mem.tokenizeScalar(u8, row, '\t');
 
         inline for (std.meta.fields(item_type)) |field| {
             const value = values.next() orelse return error.UnexpectedEndOfRow;
